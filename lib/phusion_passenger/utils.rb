@@ -31,6 +31,7 @@ require 'pathname'
 require 'etc'
 require 'fcntl'
 require 'tempfile'
+require 'stringio'
 require 'phusion_passenger/exceptions'
 if !defined?(RUBY_ENGINE) || RUBY_ENGINE == "ruby"
 	require 'phusion_passenger/native_support'
@@ -537,8 +538,8 @@ class IO
 		# This only works if this IO channel is a Unix socket.
 		#
 		# Raises SystemCallError if something went wrong.
-		def recv_io
-			return IO.new(PhusionPassenger::NativeSupport.recv_fd(self.fileno))
+		def recv_io(klass = IO)
+			return klass.for_fd(PhusionPassenger::NativeSupport.recv_fd(self.fileno))
 		end
 	end
 	
@@ -558,7 +559,6 @@ module Signal
 			result = Signal.list
 			result.delete("ALRM")
 			result.delete("VTALRM")
-			return result
 		when "jruby"
 			result = Signal.list
 			result.delete("QUIT")
@@ -566,12 +566,21 @@ module Signal
 			result.delete("FPE")
 			result.delete("KILL")
 			result.delete("SEGV")
-			result.delete("STOP")
 			result.delete("USR1")
-			return result
 		else
-			return Signal.list
+			result = Signal.list
 		end
+		
+		# Don't touch SIGCHLD no matter what! On OS X waitpid() will
+		# malfunction if SIGCHLD doesn't have a correct handler.
+		result.delete("CLD")
+		result.delete("CHLD")
+		
+		# Other stuff that we don't want to trap no matter which
+		# Ruby engine.
+		result.delete("STOP")
+		
+		return result
 	end
 end
 
@@ -581,7 +590,7 @@ end
 if RUBY_PLATFORM =~ /freebsd/ || RUBY_PLATFORM =~ /openbsd/ || (RUBY_PLATFORM =~ /darwin/ && RUBY_PLATFORM !~ /universal/)
 	require 'socket'
 	UNIXSocket.class_eval do
-		def recv_io
+		def recv_io(klass = IO)
 			super
 		end
 

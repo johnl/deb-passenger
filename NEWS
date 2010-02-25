@@ -1,3 +1,146 @@
+Release 2.2.10
+--------------
+
+ * Fixed some Bundler compatibility problems.
+ * Fixed some file descriptor passing problems, which previously
+   could lead to mysterious crashes.
+ * Fixed some compilation problems on newer GCC versions. Issue #430.
+ * Support #size method in rack.input.
+
+
+Release 2.2.9
+-------------
+
+ * Fixed compatibility with Rails 3.
+   Actually, previous Phusion Passenger releases were already compatible
+   with Rails 3, depending on the spawn method that would be invoked. Here's
+   the story:
+   
+   Since Phusion Passenger 2.2.8, when the file config.ru exists, Phusion
+   Passenger will treat the app as a Rack app, not as a Rails app. This is
+   in contrast to earlier versions which gave Rails detection more priority
+   than Rack detection. Phusion Passenger loads Rack apps and Rails apps in
+   different ways. The Rails loader was not compatible with Rails 3, which
+   is what we've fixed in this release.
+   
+   That said, a Rails 3 app would have worked out-of-the-box on Phusion
+   Passenger 2.2.8 as well because Rails 3 apps include a config.ru file
+   by default, causing Phusion Passenger 2.2.8 to use the Rack loader.
+   Earlier versions of Phusion Passenger would just completely bail out
+   because they'd use the Rails loader.
+   
+   That said, with 2.2.9 there are still some caveats:
+   - Smart spawning (the mechanism with which REE's 33% memory reduction
+     is implemented) is *not* supported for Rack apps. This means that if
+     you want to utilize smart spawning with Rails 3, then you should
+     remove your config.ru file.
+   - Rails 3 depends on Rack 1.1.0. You must have Rack 1.1.0 installed as
+     a gem, even if you've bundled it with the gem bundler. This is because
+     Phusion Passenger itself depends on Rack.
+   
+   Both of these caveats are temporary. We have plans to solve both of these
+   properly in the future.
+ * What's up with the Gem Bundler?
+   There has been some reports that Phusion Passenger is not compatible with
+   Yehuda Katz's gem bundler (http://github.com/wycats/bundler). This might
+   have been true for an earlier version of the gem bundler, but the latest
+   version seems to work fine. Please note that you need to insert the
+   following snippet in config/preinitializer.rb, as instructed by the gem
+   bundler's README:
+   
+     require "#{RAILS_ROOT}/vendor/gems/environment"
+   
+   The Rails::Boot monkey patching code as posted at
+   http://yehudakatz.com/2009/11/03/using-the-new-gem-bundler-today/
+   does not seem to be required anymore.
+ * Fixed support for ActiveRecord subclasses that connect to another database.
+   ActiveRecord subclasses that connect to a database other than the default
+   one did not have their connection correctly cleared after forking.
+   This can result in weird errors along the lines of "Lost connection to
+   MySQL server during query". Issue #429.
+ * [Nginx] Fixed PCRE URL.
+   passenger-install-nginx-module downloads PCRE 7.8 if PCRE is not already
+   installed. However PCRE 7.8 has been removed from their FTP server,
+   so we've updated the URL to point to the latest version, 8.0.
+
+
+Release 2.2.8
+-------------
+
+ * [Nginx] Fixed some signal handling problems.
+   Restarting Nginx on OS X with SIGHUP can sometimes take a long time or
+   even fail completely. This is because of some signal handling problems,
+   which have now been fixed.
+ * [Nginx] Added OpenSSL as dependency.
+   OpenSSL is required in order to install Nginx, but this was not checked
+   by passenger-install-nginx-module. As a result,
+   passenger-install-nginx-module fails on e.g. out-of-the-box Ubuntu
+   installations until the user manually installs OpenSSL. Issue #422.
+ * [Nginx] Fixed support for internal redirects and subrequests.
+   It is now possible to, for example, point X-Accel-Redirects to Phusion
+   Passenger-served URLs. Patch contributed by W. Andrew Loe III: issue #433.
+ * [Apache] Fixed a GnuTLS compatibility issue.
+   mod_gnutls can cause Phusion Passenger to crash because of an unchecked
+   NULL pointer. This problem has now been fixed: issue #391.
+ * Fixed thread creation issue on Intel Itanium platforms.
+   This fixes issue #427.
+ * Fixed compilation problems on Linux running on the Renesas SH4 CPU.
+   Patch contributed by iwamatsu: issue #428.
+ * The Rack library has been unvendored.
+   The original reason for vendoring was to work around broken Rails
+   applications that explicitly specify Rack as a gem dependency. We've
+   found a better workaround that does not require vendoring Rack.
+   This also fixes a compatibility problem with Rails 3, because Rails
+   3 depends on a newer Rack version than the one we had vendored.
+   Issue #432.
+ * Fixed compatibility with Ruby 1.9.1 patchlevel >= 152
+   Ruby 1.9.1 patchlevel >= 152 has a bug in its tempfile library. If you've
+   seen an error message along the lines of
+
+      *** Exception IOError in Passenger RequestHandler (closed stream)
+   
+   then this is a Ruby bug at work. This bug has been fixed in Ruby 1.9.2,
+   but Ruby 1.9.1 still contains this bug. We've added a workaround so that
+   the bug is not triggered with this Ruby version. Issue #432.
+
+
+Release 2.2.7
+-------------
+
+ * Removed forgotten debugging code in passenger-install-apache2-module,
+   which caused it not to compile anything.
+
+
+Release 2.2.6
+-------------
+
+ * Some /tmp cleaner programs such as tmpwatch try to remove subdirectories
+   in /tmp/passenger.xxx after a while because they think those
+   subdirectories are unused. This could cause Phusion Passenger to
+   malfunction, requiring a web server restart. Measures have now been
+   taken to prevent those tmp cleaner programs from removing anything
+   in /tmp/passenger.xxx. Issue #365.
+ * When autodetecting the application type, Rack is now given more priority
+   than Rails. This allows one to drop a config.ru file in a Rails directory
+   and have it detected as a Rack application instead of a Rails application.
+   Patch contributed by Sam Pohlenz: issue #338.
+ * The default socket backlog has been increased from 'SOMAXCONN' (which
+   is 128 on most platforms) to 1024. This should fix most
+   'helper_server.sock failed: Resource temporarily unavailable'
+   errors.
+ * Fixed compilation problems on Solaris. Issue #369 and issue #379.
+ * Fixed crashes on PowerPC.
+ * Some Ruby 1.9 compatibility fixes. Issue #398.
+ * The installer now displays correct dependency installation instructions
+   for Mandriva Linux.
+ * [Apache] The location of the 'apxs' and 'apr-config' commands can now
+   also be passed to the installer through the --apxs-path and
+   --apr-config-path parameters, in addition to the $APXS2 and $APR_CONFIG
+   environment variables. Issue #3.
+ * [Nginx] Various problems that only occur on 64-bit platforms have been fixed.
+ * [Nginx] The installer now installs Nginx 0.7.64 by default.
+
+
 Release 2.2.5
 -------------
 

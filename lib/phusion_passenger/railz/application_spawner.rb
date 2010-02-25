@@ -169,12 +169,12 @@ class ApplicationSpawner < AbstractServer
 					if @lower_privilege
 						lower_privilege('config/environment.rb', @lowest_user)
 					end
-
-					# require Rails' environment, using the same path as the original rails dispatcher,
-					# which normally does: require File.dirname(__FILE__) + "/../config/environment"
-					# thus avoiding the possibility of including the same file twice.
-					require 'public/../config/environment'
-
+					# Make sure RubyGems uses any new environment variable values
+					# that have been set now (e.g. $HOME, $GEM_HOME, etc) and that
+					# it is able to detect newly installed gems.
+					Gem.clear_paths
+					
+					require File.expand_path('config/environment')
 					require 'dispatcher'
 				end
 				if success
@@ -298,7 +298,7 @@ private
 			end
 		end
 		if File.exist?('config/preinitializer.rb')
-			require 'config/preinitializer'
+			require File.expand_path('config/preinitializer')
 		end
 		require File.expand_path('config/environment')
 		if ActionController::Base.page_cache_directory.blank?
@@ -311,17 +311,28 @@ private
 		if !defined?(Dispatcher)
 			require 'dispatcher'
 		end
+		# Rails 2.2+ uses application_controller.rb while older versions use application.rb.
 		begin
 			require_dependency 'application_controller'
-		rescue LoadError
-			require_dependency 'application'
+		rescue LoadError => e
+			begin
+				require_dependency 'application'
+			rescue LoadError
+				# Considering that most apps these das are written in Rails
+				# 2.2+, if application.rb cannot be loaded either then it
+				# probably just means that application_controller.rb threw
+				# a LoadError. So we raise the original error here; if the
+				# app is based on Rails < 2.2 then the error will make less
+				# sense but we can only choose one or the other.
+				raise e
+			end
 		end
 		
 		# - No point in preloading the application sources if the garbage collector
 		#   isn't copy-on-write friendly.
 		# - Rails >= 2.2 already preloads application sources by default, so no need
 		#   to do that again.
-		if GC.copy_on_write_friendly? && !::Rails::Initializer.method_defined?(:load_application_classes)
+		if GC.copy_on_write_friendly? && !rails_will_preload_app_code?
 			['models','controllers','helpers'].each do |section|
 				Dir.glob("app/#{section}}/*.rb").each do |file|
 					require_dependency canonicalize_path(file)
@@ -329,11 +340,22 @@ private
 			end
 		end
 	end
+	
+	def rails_will_preload_app_code?
+		if defined?(Rails::Initializer)
+			return ::Rails::Initializer.method_defined?(:load_application_classes)
+		else
+			return defined?(::Rails3)
+		end
+	end
 
 	def handle_spawn_application
+		a, b = UNIXSocket.pair
 		safe_fork('application', true) do
 			begin
-				start_request_handler(client, true)
+				a.close
+				client.close
+				start_request_handler(MessageChannel.new(b), true)
 			rescue SignalException => e
 				if e.message != AbstractRequestHandler::HARD_TERMINATION_SIGNAL &&
 				   e.message != AbstractRequestHandler::SOFT_TERMINATION_SIGNAL
@@ -341,6 +363,17 @@ private
 				end
 			end
 		end
+		
+		b.close
+		worker_channel = MessageChannel.new(a)
+		info = worker_channel.read
+		owner_pipe = worker_channel.recv_io
+		client.write(*info)
+		client.send_io(owner_pipe)
+	ensure
+		a.close if a
+		b.close if b && !b.closed?
+		owner_pipe.close if owner_pipe
 	end
 	
 	# Initialize the request handler and enter its main loop.
@@ -352,11 +385,18 @@ private
 		$0 = "Rails: #{@app_root}"
 		reader, writer = IO.pipe
 		begin
-			# Re-establish connection if a connection was established
+			# Clear or re-establish connection if a connection was established
 			# in environment.rb. This prevents us from concurrently
 			# accessing the same MySQL connection handle.
-			if defined?(::ActiveRecord::Base) && ::ActiveRecord::Base.connected?
-				::ActiveRecord::Base.establish_connection
+			if defined?(::ActiveRecord::Base)
+				if ::ActiveRecord::Base.respond_to?(:clear_all_connections!)
+					::ActiveRecord::Base.clear_all_connections!
+				elsif ::ActiveRecord::Base.respond_to?(:clear_active_connections!)
+					::ActiveRecord::Base.clear_active_connections!
+				elsif ::ActiveRecord::Base.respond_to?(:connected?) &&
+				      ::ActiveRecord::Base.connected?
+					::ActiveRecord::Base.establish_connection
+				end
 			end
 			
 			reader.fcntl(Fcntl::F_SETFD, Fcntl::FD_CLOEXEC)

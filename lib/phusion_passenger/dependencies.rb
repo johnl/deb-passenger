@@ -112,12 +112,14 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install build-essential"
-			when :rhel, :fedora, :centos
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi gcc-c++"
+			elsif tags.include?(:redhat)
 				dep.install_command = "yum install gcc-c++"
-			when :gentoo
+			elsif tags.include?(:gentoo)
 				dep.install_command = "emerge -av gcc"
 			end
 		elsif RUBY_PLATFORM =~ /darwin/
@@ -142,12 +144,14 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install ruby1.8-dev"
-			when :rhel, :fedora, :centos
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi urpmi ruby-RubyGems"
+			elsif tags.include?(:redhat)
 				dep.install_command = "yum install ruby-devel"
-			when :gentoo
+			elsif tags.include?(:gentoo)
 				dep.install_command = "emerge -av ruby"
 			end
 		elsif RUBY_PLATFORM =~ /freebsd/
@@ -218,12 +222,14 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install apache2-mpm-prefork"
-			when :rhel, :fedora, :centos
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi apache"
+			elsif tags.include?(:redhat)
 				dep.install_command = "yum install httpd"
-			when :gentoo
+			elsif tags.include?(:gentoo)
 				dep.install_command = "emerge -av apache"
 			end
 		elsif RUBY_PLATFORM =~ /freebsd/
@@ -243,14 +249,17 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install apache2-prefork-dev"
 				dep.provides = [Apache2]
-			when :rhel, :fedora, :centos
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi apache-devel"
+				dep.provides = [Apache2]
+			elsif tags.include?(:redhat)
 				dep.install_command = "yum install httpd-devel"
 				dep.provides = [Apache2]
-			when :gentoo
+			elsif tags.include?(:gentoo)
 				dep.install_command = "emerge -av apache"
 				dep.provides = [Apache2]
 			end
@@ -270,12 +279,14 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install libapr1-dev"
-			when :rhel, :fedora, :centos
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi libapr-devel"
+			elsif tags.include?(:redhat)
 				dep.install_command = "yum install apr-devel"
-			when :gentoo
+			elsif tags.include?(:gentoo)
 				dep.install_command = "emerge -av apr"
 			end
 		elsif RUBY_PLATFORM =~ /darwin/
@@ -297,9 +308,11 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install libaprutil1-dev"
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi libapr-util-devel"
 			end
 		elsif RUBY_PLATFORM =~ /darwin/
 			dep.install_instructions = "Please install Apache from MacPorts, which will " <<
@@ -344,6 +357,38 @@ module Dependencies # :nodoc: all
 		dep.install_instructions = "Please install RubyGems first, then run <b>#{PlatformInfo::GEM || "gem"} install rack</b>"
 	end
 	
+	OpenSSL_Dev = Dependency.new do |dep|
+		dep.name = "OpenSSL development headers"
+		dep.define_checker do |result|
+			source_file = '/tmp/passenger-openssl-check.c'
+			object_file = '/tmp/passenger-openssl-check.o'
+			begin
+				File.open(source_file, 'w') do |f|
+					f.write("#include <openssl/ssl.h>")
+				end
+				Dir.chdir(File.dirname(source_file)) do
+					if system("(gcc #{ENV['CFLAGS']} -c '#{source_file}') >/dev/null 2>/dev/null")
+						result.found
+					else
+						result.not_found
+					end
+				end
+			ensure
+				File.unlink(source_file) rescue nil
+				File.unlink(object_file) rescue nil
+			end
+		end
+		if RUBY_PLATFORM =~ /linux/
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
+				dep.install_command = "apt-get install libssl-dev"
+			elsif tags.include?(:redhat)
+				dep.install_command = "yum install openssl-devel"
+			end
+		end
+		dep.website = "http://www.openssl.org/"
+	end
+	
 	Zlib_Dev = Dependency.new do |dep|
 		dep.name = "Zlib development headers"
 		dep.define_checker do |result|
@@ -364,10 +409,12 @@ module Dependencies # :nodoc: all
 			end
 		end
 		if RUBY_PLATFORM =~ /linux/
-			case PlatformInfo.linux_distro
-			when :ubuntu, :debian
+			tags = PlatformInfo.linux_distro_tags
+			if tags.include?(:debian)
 				dep.install_command = "apt-get install zlib1g-dev"
-			when :rhel, :fedora, :centos
+			elsif tags.include?(:mandriva)
+				dep.install_command = "urpmi zlib1-devel"
+			elsif tags.include?(:redhat)
 				dep.install_command = "yum install zlib-devel"
 			end
 		end
