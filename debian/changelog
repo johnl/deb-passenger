@@ -1,3 +1,11 @@
+passenger (3.0.14-1bbox1) precise; urgency=low
+
+  * New upstream version, 3.0.14
+  * Change Conflict to Breaks with older versions (as per Debian
+    Maintainers manual policy)
+
+ -- John Leach <john@brightbox.co.uk>  Wed, 25 Jul 2012 18:04:47 +0100
+
 passenger (3.0.13-1bbox2) precise; urgency=low
 
   * Remove 01_disable_html5_documentation.patch
