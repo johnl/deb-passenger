@@ -14,7 +14,7 @@ XS-Vcs-browser: http://github.com/johnl/deb-passenger/tree/master
 Package: passenger-common
 Architecture: any
 Depends: ${shlibs:Depends}, ruby, librack-ruby1.8 (>= 1.0.0)
-Breaks: libapache2-mod-passenger (<< 3.0.0)
+Breaks: libapache2-mod-passenger (<< 3.0.0), passenger-common1.8
 Suggests: python, rails, passenger-doc, rubygems (>= 1.0)
 Description: Rails and Rack support for Apache2
  Phusion Passenger — a.k.a. mod_rails or mod_rack — makes
