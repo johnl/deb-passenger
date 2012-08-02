@@ -1,7 +1,7 @@
 passenger (3.0.14-1bbox2) precise; urgency=low
 
   * Specify that passenger-common breaks passenger-common1.8, to ensure a
-	  smooth upgrade to the ruby-ng packages.
+    smooth upgrade to the ruby-ng packages.
 
  -- John Leach <john@brightbox.co.uk>  Thu, 02 Aug 2012 17:50:25 +0100
 
