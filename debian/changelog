@@ -1,3 +1,9 @@
+passenger (3.0.19-1bbox1) precise; urgency=low
+
+  * New upstream version, 3.0.19
+
+ -- John Leach <john@brightbox.co.uk>  Wed, 30 Jan 2013 18:33:46 +0000
+
 passenger (3.0.17-1bbox1) precise; urgency=low
 
   * New upstream version, 3.0.17
