@@ -18,34 +18,6 @@
 
 1.2. Where to get support	=>	where-to-get-support-2s9na5
 
-10. Appendix B: Terminology	=>	appendix-b-terminology-wzv5ro
-
-10.1. Application root	=>	application-root-1fd6bqv
-
-10.2. Idle process	=>	idle-process-13byfw9
-
-10.3. Inactive process	=>	inactive-process-1d2h0po
-
-11. Appendix C: Spawning methods explained	=>	appendix-c-spawning-methods-explained-tcp8e6
-
-11.1. The most straightforward and traditional way: conservative spawning	=>	the-most-straightforward-and-traditional-way-conservative-spawning-civ29z
-
-11.2. The smart spawning method	=>	the-smart-spawning-method-7nhgtj
-
-11.2.1. How it works	=>	how-it-works-f9umga
-
-11.2.2. Summary of benefits	=>	summary-of-benefits-qovyvk
-
-11.3. Smart spawning gotcha #1: unintentional file descriptor sharing	=>	smart-spawning-gotcha-1-unintentional-file-descriptor-sharing-cebw6q
-
-11.3.1. Example 1: Memcached connection sharing (harmful)	=>	example-1-memcached-connection-sharing-harmful--1wfs3ad
-
-11.3.2. Example 2: Log file sharing (not harmful)	=>	example-2-log-file-sharing-not-harmful--ox4yfy
-
-11.4. Smart spawning gotcha #2: the need to revive threads	=>	smart-spawning-gotcha-2-the-need-to-revive-threads-1ey176o
-
-11.5. Smart spawning gotcha #3: code load order	=>	smart-spawning-gotcha-3-code-load-order-12ydsn8
-
 2. Installing Phusion Passenger	=>	installing-phusion-passenger-hn03ac
 
 2.1. Overview	=>	overview-kvhzi4
@@ -105,30 +77,6 @@
 5. Configuring Phusion Passenger	=>	configuring-phusion-passenger-1g1svey
 
 5.1. passenger_root <directory>	=>	passenger-root-directory--bqvhhz
-
-5.10. Logging and debugging options	=>	logging-and-debugging-options-14e91ni
-
-5.10.1. passenger_log_level <integer>	=>	passenger-log-level-integer--17snhon
-
-5.10.2. passenger_debug_log_file <filename>	=>	passenger-debug-log-file-filename--21ubaj
-
-5.10.3. passenger_debugger <on|off>	=>	passenger-debugger-on-off--1wkuq85
-
-5.11. Ruby on Rails-specific options	=>	ruby-on-rails-specific-options-12vfokt
-
-5.11.1. rails_env <string>	=>	rails-env-string--jlh7v9
-
-5.11.2. rails_framework_spawner_idle_time <integer>	=>	rails-framework-spawner-idle-time-integer--q5ljd5
-
-5.11.3. rails_app_spawner_idle_time <integer>	=>	rails-app-spawner-idle-time-integer--1xjqe4b
-
-5.12. Rack and Rails >= 3 specific options	=>	rack-specific-options-13yvdxs
-
-5.12.1. rack_env <string>	=>	rack-env-string--tqmrt0
-
-5.13. Deprecated options	=>	deprecated-options-1dtzo0g
-
-5.13.1. rails_spawn_method	=>	rails-spawn-method-17vdnpt
 
 5.2. passenger_ruby <filename>	=>	passenger-ruby-filename--1gnok5k
 
@@ -196,6 +144,30 @@
 
 5.9.9. passenger_pre_start <url>	=>	passenger-pre-start-url--1f2phk7
 
+5.10. Logging and debugging options	=>	logging-and-debugging-options-14e91ni
+
+5.10.1. passenger_log_level <integer>	=>	passenger-log-level-integer--17snhon
+
+5.10.2. passenger_debug_log_file <filename>	=>	passenger-debug-log-file-filename--21ubaj
+
+5.10.3. passenger_debugger <on|off>	=>	passenger-debugger-on-off--1wkuq85
+
+5.11. Ruby on Rails-specific options	=>	ruby-on-rails-specific-options-12vfokt
+
+5.11.1. rails_env <string>	=>	rails-env-string--jlh7v9
+
+5.11.2. rails_framework_spawner_idle_time <integer>	=>	rails-framework-spawner-idle-time-integer--q5ljd5
+
+5.11.3. rails_app_spawner_idle_time <integer>	=>	rails-app-spawner-idle-time-integer--1xjqe4b
+
+5.12. Rack and Rails >= 3 specific options	=>	rack-specific-options-13yvdxs
+
+5.12.1. rack_env <string>	=>	rack-env-string--tqmrt0
+
+5.13. Deprecated options	=>	deprecated-options-1dtzo0g
+
+5.13.1. rails_spawn_method	=>	rails-spawn-method-17vdnpt
+
 6. Analysis and system maintenance	=>	analysis-and-system-maintenance-1nnlnj8
 
 6.1. Inspecting memory usage	=>	inspecting-memory-usage-1k6y8v0
@@ -233,4 +205,32 @@
 8.2. How Phusion Passenger detects whether a virtual host is a web application	=>	how-phusion-passenger-detects-whether-a-virtual-host-is-a-web-application-13qbmhn
 
 9. Appendix A: About this document	=>	appendix-a-about-this-document-zfvixm
+
+10. Appendix B: Terminology	=>	appendix-b-terminology-wzv5ro
+
+10.1. Application root	=>	application-root-1fd6bqv
+
+10.2. Idle process	=>	idle-process-13byfw9
+
+10.3. Inactive process	=>	inactive-process-1d2h0po
+
+11. Appendix C: Spawning methods explained	=>	appendix-c-spawning-methods-explained-tcp8e6
+
+11.1. The most straightforward and traditional way: conservative spawning	=>	the-most-straightforward-and-traditional-way-conservative-spawning-civ29z
+
+11.2. The smart spawning method	=>	the-smart-spawning-method-7nhgtj
+
+11.2.1. How it works	=>	how-it-works-f9umga
+
+11.2.2. Summary of benefits	=>	summary-of-benefits-qovyvk
+
+11.3. Smart spawning gotcha #1: unintentional file descriptor sharing	=>	smart-spawning-gotcha-1-unintentional-file-descriptor-sharing-cebw6q
+
+11.3.1. Example 1: Memcached connection sharing (harmful)	=>	example-1-memcached-connection-sharing-harmful--1wfs3ad
+
+11.3.2. Example 2: Log file sharing (not harmful)	=>	example-2-log-file-sharing-not-harmful--ox4yfy
+
+11.4. Smart spawning gotcha #2: the need to revive threads	=>	smart-spawning-gotcha-2-the-need-to-revive-threads-1ey176o
+
+11.5. Smart spawning gotcha #3: code load order	=>	smart-spawning-gotcha-3-code-load-order-12ydsn8
 
