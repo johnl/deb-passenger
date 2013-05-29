@@ -795,11 +795,14 @@ install: function(toclevels) {
 }
 
 }
-asciidoc.install(3);
+asciidoc.install();
 /*]]>*/
-</script><style type="text/css">
+</script>
+<style type="text/css">
 body {
-	margin: 1em 10% 1em 10%;
+	margin: 1em auto 1em auto;
+	padding: 0 1em 0 1em;
+	max-width: 800px;
 }
 
 a.image {
@@ -876,6 +879,10 @@ a.image {
 
 #comments_lightbox_contents > .shell {
 	margin: 2em;
+}
+
+pre {
+	overflow: auto;
 }
 
 @media print {
@@ -1038,12 +1045,22 @@ a.image {
 	border-bottom-right-radius: 0;
 }
 
+/* http://nicolasgallagher.com/jump-links-and-viewport-positioning/ */
+.anchor_helper {
+	position: relative;
+	display: block;
+	top: -50px;
+	width: 1px;
+	height: 1px;
+}
+
 </style>
 </head>
 <body class="article">
 <div id="topbar" style="display: none">
 	<div class="title">
-		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAKCAYAAAEV95QVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sGCRMSACDxkZwAAAAidEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOHqHdDAAAAZUlEQVQY032PSxbAIAjEIlfygL6ePF3UUvpzNjgSYWwqAMEhUQnANnsC7TQPeJpsVWzMuh2sog4vDTUbqP081zECrW4dtdaQGSIKlWluPyjK+VXxAz5XfcKufCzA130AfQHWB30HZxlPaP080xsAAAAASUVORK5CYII=" width="11" height="10" alt=""><a href="javascript:void(Mizuho.smoothlyScrollToToc())">Phusion Passenger users guide</a>
+		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAKCAYAAAEV95QVAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9sGCRMSACDxkZwAAAAidEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVAgb24gYSBNYWOHqHdDAAAAZUlEQVQY032PSxbAIAjEIlfygL6ePF3UUvpzNjgSYWwqAMEhUQnANnsC7TQPeJpsVWzMuh2sog4vDTUbqP081zECrW4dtdaQGSIKlWluPyjK+VXxAz5XfcKufCzA130AfQHWB30HZxlPaP080xsAAAAASUVORK5CYII=" width="11" height="10" alt="">
+		<a href="javascript:void(Mizuho.smoothlyScrollToToc())">Phusion Passenger users guide</a>
 	</div>
 	<a href="javascript:void(0)" id="current_section"></a>
 </div>
@@ -1053,7 +1070,8 @@ a.image {
 <div class="sectionbody">
 <div class="paragraph"><p><span class="image">
 <a class="image" href="http://www.phusion.nl/">
-<img src="images/phusion_banner.png" alt="images/phusion_banner.png"></a>
+<img src="images/phusion_banner.png" alt="images/phusion_banner.png">
+</a>
 </span></p></div>
 <div class="paragraph"><p>Phusion Passenger is an Apache module, which makes deploying Ruby and Ruby on
 Rails applications on Apache a breeze. It follows the usual Ruby on Rails
@@ -1092,17 +1110,165 @@ using the commandline.</p></div>
 </div>
 </div>
 <div id="toc">
-  <a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><div id="toctitle">Table of Contents</div>
-  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><div id="toctitle">Table of Contents</div>
+<div class="foo toclevel2"><a href="#_support_information">1. Support information</a></div>
+<div class="foo toclevel3"><a href="#_supported_operating_systems">1.1. Supported operating systems</a></div>
+<div class="foo toclevel3"><a href="#_where_to_get_support">1.2. Where to get support</a></div>
+<div class="foo toclevel2"><a href="#_installing_upgrading_and_uninstalling_phusion_passenger">2. Installing, upgrading and uninstalling Phusion Passenger</a></div>
+<div class="foo toclevel3"><a href="#_generic_installation_instructions">2.1. Generic installation instructions</a></div>
+<div class="foo toclevel4"><a href="#install_passenger">2.1.1. Overview of installation methods</a></div>
+<div class="foo toclevel4"><a href="#_preparation_gem_and_source_tarball_only">2.1.2. Preparation (gem and source tarball only)</a></div>
+<div class="foo toclevel4"><a href="#_installing_via_the_gem">2.1.3. Installing via the gem</a></div>
+<div class="foo toclevel4"><a href="#_installing_via_the_source_tarball">2.1.4. Installing via the source tarball</a></div>
+<div class="foo toclevel4"><a href="#_installing_via_a_native_linux_package">2.1.5. Installing via a native Linux package</a></div>
+<div class="foo toclevel4"><a href="#_what_does_the_installer_do">2.1.6. What does the installer do?</a></div>
+<div class="foo toclevel3"><a href="#_operating_system_specific_instructions_and_information">2.2. Operating system-specific instructions and information</a></div>
+<div class="foo toclevel4"><a href="#_macos_x">2.2.1. MacOS X</a></div>
+<div class="foo toclevel4"><a href="#_ubuntu_linux">2.2.2. Ubuntu Linux</a></div>
+<div class="foo toclevel4"><a href="#_opensolaris">2.2.3. OpenSolaris</a></div>
+<div class="foo toclevel3"><a href="#_upgrading_or_downgrading_phusion_passenger">2.3. Upgrading or downgrading Phusion Passenger</a></div>
+<div class="foo toclevel3"><a href="#_unloading_disabling_phusion_passenger_from_apache_without_uninstalling_it">2.4. Unloading (disabling) Phusion Passenger from Apache without uninstalling it</a></div>
+<div class="foo toclevel3"><a href="#_uninstalling_phusion_passenger">2.5. Uninstalling Phusion Passenger</a></div>
+<div class="foo toclevel2"><a href="#_deploying_a_ruby_on_rails_1_x_or_2_x_but_not_rails_gt_3_x_application">3. Deploying a Ruby on Rails 1.x or 2.x (but NOT Rails &gt;= 3.x) application</a></div>
+<div class="foo toclevel3"><a href="#_deploying_to_a_virtual_host_8217_s_root">3.1. Deploying to a virtual host’s root</a></div>
+<div class="foo toclevel3"><a href="#deploying_rails_to_sub_uri">3.2. Deploying to a sub URI</a></div>
+<div class="foo toclevel3"><a href="#_redeploying_restarting_the_ruby_on_rails_application">3.3. Redeploying (restarting the Ruby on Rails application)</a></div>
+<div class="foo toclevel3"><a href="#_migrations">3.4. Migrations</a></div>
+<div class="foo toclevel3"><a href="#_capistrano_integration">3.5. Capistrano integration</a></div>
+<div class="foo toclevel2"><a href="#_deploying_a_rack_based_ruby_application_including_rails_gt_3">4. Deploying a Rack-based Ruby application (including Rails &gt;= 3)</a></div>
+<div class="foo toclevel3"><a href="#_tutorial_example_writing_and_deploying_a_hello_world_rack_application">4.1. Tutorial/example: writing and deploying a Hello World Rack application</a></div>
+<div class="foo toclevel3"><a href="#_deploying_to_a_virtual_host_8217_s_root_2">4.2. Deploying to a virtual host’s root</a></div>
+<div class="foo toclevel3"><a href="#deploying_rack_to_sub_uri">4.3. Deploying to a sub URI</a></div>
+<div class="foo toclevel3"><a href="#_redeploying_restarting_the_rack_application">4.4. Redeploying (restarting the Rack application)</a></div>
+<div class="foo toclevel3"><a href="#_rackup_specifications_for_various_web_frameworks">4.5. Rackup specifications for various web frameworks</a></div>
+<div class="foo toclevel4"><a href="#_camping">4.5.1. Camping</a></div>
+<div class="foo toclevel4"><a href="#_halcyon">4.5.2. Halcyon</a></div>
+<div class="foo toclevel4"><a href="#_mack">4.5.3. Mack</a></div>
+<div class="foo toclevel4"><a href="#_merb">4.5.4. Merb</a></div>
+<div class="foo toclevel4"><a href="#_ramaze">4.5.5. Ramaze</a></div>
+<div class="foo toclevel4"><a href="#_sinatra">4.5.6. Sinatra</a></div>
+<div class="foo toclevel2"><a href="#_configuring_phusion_passenger">5. Configuring Phusion Passenger</a></div>
+<div class="foo toclevel3"><a href="#_passengerroot_lt_directory_gt">5.1. PassengerRoot &lt;directory&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerRuby">5.2. PassengerRuby &lt;filename&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerAppRoot">5.3. PassengerAppRoot &lt;path/to/root&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerSpawnMethod">5.4. PassengerSpawnMethod &lt;string&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerUseGlobalQueue">5.5. PassengerUseGlobalQueue &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_passengerenabled_lt_on_off_gt">5.6. PassengerEnabled &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerTempDir">5.7. PassengerTempDir &lt;directory&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerUploadBufferDir">5.8. PassengerUploadBufferDir &lt;directory&gt;</a></div>
+<div class="foo toclevel3"><a href="#_passengerrestartdir_lt_directory_gt">5.9. PassengerRestartDir &lt;directory&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerBufferResponse">5.10. PassengerBufferResponse &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#PassengerRollingRestarts">5.11. PassengerRollingRestarts &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_passengerresistdeploymenterrors_lt_on_off_gt">5.12. PassengerResistDeploymentErrors &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_security_options">5.13. Security options</a></div>
+<div class="foo toclevel4"><a href="#PassengerUserSwitching">5.13.1. PassengerUserSwitching &lt;on|off&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengeruser_lt_username_gt">5.13.2. PassengerUser &lt;username&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengergroup_lt_group_name_gt">5.13.3. PassengerGroup &lt;group name&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerDefaultUser">5.13.4. PassengerDefaultUser &lt;username&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerDefaultGroup">5.13.5. PassengerDefaultGroup &lt;group name&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengerfriendlyerrorpages_lt_on_off_gt">5.13.6. PassengerFriendlyErrorPages &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_resource_control_and_optimization_options">5.14. Resource control and optimization options</a></div>
+<div class="foo toclevel4"><a href="#_passengermaxpoolsize_lt_integer_gt">5.14.1. PassengerMaxPoolSize &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerMinInstances">5.14.2. PassengerMinInstances &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengermaxinstances_lt_integer_gt">5.14.3. PassengerMaxInstances &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengermaxinstancesperapp_lt_integer_gt">5.14.4. PassengerMaxInstancesPerApp &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerPoolIdleTime">5.14.5. PassengerPoolIdleTime &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerMaxRequests">5.14.6. PassengerMaxRequests &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerMaxRequestTime">5.14.7. PassengerMaxRequestTime &lt;seconds&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerMemoryLimit">5.14.8. PassengerMemoryLimit &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengerstatthrottlerate_lt_integer_gt">5.14.9. PassengerStatThrottleRate &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerPreStart">5.14.10. PassengerPreStart &lt;url&gt;</a></div>
+<div class="foo toclevel4"><a href="#PassengerHighPerformance">5.14.11. PassengerHighPerformance &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_compatibility_options">5.15. Compatibility options</a></div>
+<div class="foo toclevel4"><a href="#PassengerResolveSymlinksInDocumentRoot">5.15.1. PassengerResolveSymlinksInDocumentRoot &lt;on|off&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengerallowencodedslashes_lt_on_off_gt">5.15.2. PassengerAllowEncodedSlashes &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_logging_and_debugging_options">5.16. Logging and debugging options</a></div>
+<div class="foo toclevel4"><a href="#_passengerloglevel_lt_integer_gt">5.16.1. PassengerLogLevel &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengerdebuglogfile_lt_filename_gt">5.16.2. PassengerDebugLogFile &lt;filename&gt;</a></div>
+<div class="foo toclevel4"><a href="#_passengerdebugger_lt_on_off_gt">5.16.3. PassengerDebugger &lt;on|off&gt;</a></div>
+<div class="foo toclevel3"><a href="#_ruby_on_rails_specific_options">5.17. Ruby on Rails-specific options</a></div>
+<div class="foo toclevel4"><a href="#_railsautodetect_lt_on_off_gt">5.17.1. RailsAutoDetect &lt;on|off&gt;</a></div>
+<div class="foo toclevel4"><a href="#RailsBaseURI">5.17.2. RailsBaseURI &lt;uri&gt;</a></div>
+<div class="foo toclevel4"><a href="#rails_env">5.17.3. RailsEnv &lt;string&gt;</a></div>
+<div class="foo toclevel4"><a href="#_railsframeworkspawneridletime_lt_integer_gt">5.17.4. RailsFrameworkSpawnerIdleTime &lt;integer&gt;</a></div>
+<div class="foo toclevel4"><a href="#_railsappspawneridletime_lt_integer_gt">5.17.5. RailsAppSpawnerIdleTime &lt;integer&gt;</a></div>
+<div class="foo toclevel3"><a href="#_rack_and_rails_gt_3_specific_options">5.18. Rack and Rails &gt;= 3 specific options</a></div>
+<div class="foo toclevel4"><a href="#_rackautodetect_lt_on_off_gt">5.18.1. RackAutoDetect &lt;on|off&gt;</a></div>
+<div class="foo toclevel4"><a href="#RackBaseURI">5.18.2. RackBaseURI &lt;uri&gt;</a></div>
+<div class="foo toclevel4"><a href="#rack_env">5.18.3. RackEnv &lt;string&gt;</a></div>
+<div class="foo toclevel3"><a href="#_deprecated_options">5.19. Deprecated options</a></div>
+<div class="foo toclevel4"><a href="#_railsruby">5.19.1. RailsRuby</a></div>
+<div class="foo toclevel4"><a href="#_railsuserswitching">5.19.2. RailsUserSwitching</a></div>
+<div class="foo toclevel4"><a href="#_railsdefaultuser">5.19.3. RailsDefaultUser</a></div>
+<div class="foo toclevel4"><a href="#_railsallowmodrewrite">5.19.4. RailsAllowModRewrite</a></div>
+<div class="foo toclevel4"><a href="#_railsspawnmethod">5.19.5. RailsSpawnMethod</a></div>
+<div class="foo toclevel2"><a href="#_troubleshooting">6. Troubleshooting</a></div>
+<div class="foo toclevel3"><a href="#_operating_system_specific_problems">6.1. Operating system-specific problems</a></div>
+<div class="foo toclevel4"><a href="#_macos_x_the_installer_cannot_locate_mamp_8217_s_apache">6.1.1. MacOS X: The installer cannot locate MAMP’s Apache</a></div>
+<div class="foo toclevel3"><a href="#_problems_during_installation">6.2. Problems during installation</a></div>
+<div class="foo toclevel4"><a href="#installing_ruby_dev">6.2.1. Ruby development headers aren’t installed</a></div>
+<div class="foo toclevel4"><a href="#_apache_development_headers_aren_8217_t_installed">6.2.2. Apache development headers aren’t installed</a></div>
+<div class="foo toclevel4"><a href="#_apr_development_headers_aren_8217_t_installed">6.2.3. APR development headers aren’t installed</a></div>
+<div class="foo toclevel4"><a href="#_phusion_passenger_is_using_the_wrong_apache_during_installation">6.2.4. Phusion Passenger is using the wrong Apache during installation</a></div>
+<div class="foo toclevel4"><a href="#_phusion_passenger_is_using_the_wrong_ruby_during_installation">6.2.5. Phusion Passenger is using the wrong Ruby during installation</a></div>
+<div class="foo toclevel3"><a href="#_problems_after_installation">6.3. Problems after installation</a></div>
+<div class="foo toclevel4"><a href="#_my_rails_application_works_on_mongrel_but_not_on_phusion_passenger">6.3.1. My Rails application works on Mongrel, but not on Phusion Passenger</a></div>
+<div class="foo toclevel4"><a href="#_phusion_passenger_has_been_compiled_against_the_wrong_apache_installation">6.3.2. Phusion Passenger has been compiled against the wrong Apache installation</a></div>
+<div class="foo toclevel4"><a href="#_i_get_a_403_forbidden_error">6.3.3. I get a "403 Forbidden" error</a></div>
+<div class="foo toclevel4"><a href="#_static_assets_such_as_images_and_stylesheets_aren_8217_t_being_displayed">6.3.4. Static assets such as images and stylesheets aren’t being displayed</a></div>
+<div class="foo toclevel4"><a href="#_the_apache_error_log_says_that_the_spawn_manager_script_does_not_exist_or_that_it_does_not_have_permission_to_execute_it">6.3.5. The Apache error log says that the spawn manager script does not exist, or that it does not have permission to execute it</a></div>
+<div class="foo toclevel4"><a href="#_the_rails_application_reports_that_it_8217_s_unable_to_start_because_of_a_permission_error">6.3.6. The Rails application reports that it’s unable to start because of a permission error</a></div>
+<div class="foo toclevel4"><a href="#_my_rails_application_8217_s_log_file_is_not_being_written_to">6.3.7. My Rails application’s log file is not being written to</a></div>
+<div class="foo toclevel4"><a href="#_i_8217_ve_deployed_my_app_on_ssl_but_the_app_thinks_its_not_on_ssl">6.3.8. I’ve deployed my app on SSL, but the app thinks its not on SSL</a></div>
+<div class="foo toclevel3"><a href="#conflicting_apache_modules">6.4. Conflicting Apache modules</a></div>
+<div class="foo toclevel4"><a href="#_mod_userdir">6.4.1. mod_userdir</a></div>
+<div class="foo toclevel4"><a href="#_multiviews_mod_negotiation">6.4.2. MultiViews (mod_negotiation)</a></div>
+<div class="foo toclevel4"><a href="#_virtualdocumentroot">6.4.3. VirtualDocumentRoot</a></div>
+<div class="foo toclevel2"><a href="#_analysis_and_system_maintenance">7. Analysis and system maintenance</a></div>
+<div class="foo toclevel3"><a href="#_inspecting_memory_usage">7.1. Inspecting memory usage</a></div>
+<div class="foo toclevel3"><a href="#_inspecting_phusion_passenger_8217_s_internal_status">7.2. Inspecting Phusion Passenger’s internal status</a></div>
+<div class="foo toclevel3"><a href="#debugging_frozen">7.3. Debugging frozen applications</a></div>
+<div class="foo toclevel3"><a href="#_accessing_individual_application_processes">7.4. Accessing individual application processes</a></div>
+<div class="foo toclevel3"><a href="#_attaching_an_irb_console_to_an_application_process">7.5. Attaching an IRB console to an application process</a></div>
+<div class="foo toclevel2"><a href="#_tips">8. Tips</a></div>
+<div class="foo toclevel3"><a href="#user_switching">8.1. User switching (security)</a></div>
+<div class="foo toclevel3"><a href="#reducing_memory_usage">8.2. Reducing memory consumption of Ruby on Rails applications by 33%</a></div>
+<div class="foo toclevel3"><a href="#capistrano">8.3. Capistrano recipe</a></div>
+<div class="foo toclevel3"><a href="#bundler_support">8.4. Bundler support</a></div>
+<div class="foo toclevel3"><a href="#moving_phusion_passenger">8.5. Moving Phusion Passenger to a different directory</a></div>
+<div class="foo toclevel3"><a href="#_installing_multiple_ruby_on_rails_versions">8.6. Installing multiple Ruby on Rails versions</a></div>
+<div class="foo toclevel3"><a href="#_making_the_application_restart_after_each_request">8.7. Making the application restart after each request</a></div>
+<div class="foo toclevel3"><a href="#sub_uri_deployment_uri_fix">8.8. How to fix broken images/CSS/JavaScript URIs in sub-URI deployments</a></div>
+<div class="foo toclevel3"><a href="#_x_sendfile_support">8.9. X-Sendfile support</a></div>
+<div class="foo toclevel3"><a href="#_upload_progress">8.10. Upload progress</a></div>
+<div class="foo toclevel2"><a href="#_under_the_hood">9. Under the hood</a></div>
+<div class="foo toclevel3"><a href="#_static_assets_serving">9.1. Static assets serving</a></div>
+<div class="foo toclevel3"><a href="#_page_caching_support">9.2. Page caching support</a></div>
+<div class="foo toclevel3"><a href="#application_detection">9.3. How Phusion Passenger detects whether a virtual host is a web application</a></div>
+<div class="foo toclevel2"><a href="#_appendix_a_about_this_document">10. Appendix A: About this document</a></div>
+<div class="foo toclevel2"><a href="#_appendix_b_terminology">11. Appendix B: Terminology</a></div>
+<div class="foo toclevel3"><a href="#application_root">11.1. Application root</a></div>
+<div class="foo toclevel3"><a href="#idle_process">11.2. Idle process</a></div>
+<div class="foo toclevel3"><a href="#inactive_process">11.3. Inactive process</a></div>
+<div class="foo toclevel2"><a href="#spawning_methods_explained">12. Appendix C: Spawning methods explained</a></div>
+<div class="foo toclevel3"><a href="#_the_most_straightforward_and_traditional_way_conservative_spawning">12.1. The most straightforward and traditional way: conservative spawning</a></div>
+<div class="foo toclevel3"><a href="#_the_smart_spawning_method">12.2. The smart spawning method</a></div>
+<div class="foo toclevel4"><a href="#_how_it_works">12.2.1. How it works</a></div>
+<div class="foo toclevel4"><a href="#_summary_of_benefits">12.2.2. Summary of benefits</a></div>
+<div class="foo toclevel3"><a href="#_smart_spawning_gotcha_1_unintentional_file_descriptor_sharing">12.3. Smart spawning gotcha #1: unintentional file descriptor sharing</a></div>
+<div class="foo toclevel4"><a href="#_example_1_memcached_connection_sharing_harmful">12.3.1. Example 1: Memcached connection sharing (harmful)</a></div>
+<div class="foo toclevel4"><a href="#_example_2_log_file_sharing_not_harmful">12.3.2. Example 2: Log file sharing (not harmful)</a></div>
+<div class="foo toclevel3"><a href="#_smart_spawning_gotcha_2_the_need_to_revive_threads">12.4. Smart spawning gotcha #2: the need to revive threads</a></div>
+<div class="foo toclevel3"><a href="#_smart_spawning_gotcha_3_code_load_order">12.5. Smart spawning gotcha #3: code load order</a></div>
 </div>
 </div>
 <div id="content">
 
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_support_information" data-comment-topic="support-information-zkewk3">1. Support information</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_support_information"></span><h2 data-comment-topic="support-information-zkewk3" data-anchor="_support_information">1. Support information</h2>
 <div class="sectionbody">
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_supported_operating_systems" data-comment-topic="supported-operating-systems-rhbg35">1.1. Supported operating systems</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_supported_operating_systems"></span><h3 data-comment-topic="supported-operating-systems-rhbg35" data-anchor="_supported_operating_systems">1.1. Supported operating systems</h3>
 <div class="paragraph"><p>Phusion Passenger works on any POSIX-compliant operating system. In other
 words: practically any operating system on earth, except Microsoft Windows.</p></div>
 <div class="paragraph"><p>Phusion Passenger is confirmed on a large number of operating systems and Linux
@@ -1118,7 +1284,7 @@ or
 if it doesn’t work on your POSIX-compliant operating system.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_where_to_get_support" data-comment-topic="where-to-get-support-f3pbrb">1.2. Where to get support</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_where_to_get_support"></span><h3 data-comment-topic="where-to-get-support-f3pbrb" data-anchor="_where_to_get_support">1.2. Where to get support</h3>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1137,12 +1303,12 @@ if it doesn’t work on your POSIX-compliant operating system.</p></div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_installing_upgrading_and_uninstalling_phusion_passenger" data-comment-topic="installing-upgrading-and-uninstalling-phusion-passenger-laryvs">2. Installing, upgrading and uninstalling Phusion Passenger</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_installing_upgrading_and_uninstalling_phusion_passenger"></span><h2 data-comment-topic="installing-upgrading-and-uninstalling-phusion-passenger-laryvs" data-anchor="_installing_upgrading_and_uninstalling_phusion_passenger">2. Installing, upgrading and uninstalling Phusion Passenger</h2>
 <div class="sectionbody">
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_generic_installation_instructions" data-comment-topic="generic-installation-instructions-17jo43j">2.1. Generic installation instructions</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_generic_installation_instructions"></span><h3 data-comment-topic="generic-installation-instructions-17jo43j" data-anchor="_generic_installation_instructions">2.1. Generic installation instructions</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="install_passenger" data-comment-topic="overview-of-installation-methods-12vnjyb">2.1.1. Overview of installation methods</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="install_passenger"></span><h4 data-comment-topic="overview-of-installation-methods-12vnjyb" data-anchor="install_passenger">2.1.1. Overview of installation methods</h4>
 <div class="paragraph"><p>There are three ways to install Phusion Passenger:</p></div>
 <div class="olist arabic"><ol class="arabic">
 <li>
@@ -1170,7 +1336,7 @@ the gem or the native package is easiest. For these two installation methods,
 Phusion Passenger provides an easy-to-use installer.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_preparation_gem_and_source_tarball_only" data-comment-topic="preparation-gem-and-source-tarball-only--1sxhbgg">2.1.2. Preparation (gem and source tarball only)</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_preparation_gem_and_source_tarball_only"></span><h4 data-comment-topic="preparation-gem-and-source-tarball-only--1sxhbgg" data-anchor="_preparation_gem_and_source_tarball_only">2.1.2. Preparation (gem and source tarball only)</h4>
 <div class="paragraph"><p>If you want to install Phusion Passenger via the gem or the source tarball,
 then some preparations might be required. You can skip this subsection if
 you’re installing Phusion Passenger via a native Linux package, because no
@@ -1286,7 +1452,7 @@ following Ruby installations:</p></div>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_installing_via_the_gem" data-comment-topic="installing-via-the-gem-39jw1u">2.1.3. Installing via the gem</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_installing_via_the_gem"></span><h4 data-comment-topic="installing-via-the-gem-39jw1u" data-anchor="_installing_via_the_gem">2.1.3. Installing via the gem</h4>
 <div class="paragraph"><p>Please install the gem and then run the Phusion Passenger installer, by typing the
 following commands:</p></div>
 <div class="listingblock">
@@ -1298,7 +1464,7 @@ passenger-install-apache2-module</pre>
 <div class="paragraph"><p>Please follow the instructions given by the installer.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_installing_via_the_source_tarball" data-comment-topic="installing-via-the-source-tarball-1cgxrqc">2.1.4. Installing via the source tarball</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_installing_via_the_source_tarball"></span><h4 data-comment-topic="installing-via-the-source-tarball-1cgxrqc" data-anchor="_installing_via_the_source_tarball">2.1.4. Installing via the source tarball</h4>
 <div class="paragraph"><p>Extract the tarball to whatever location you prefer. <strong>The Phusion Passenger files
 are to reside in that location permanently.</strong> For example, if you would like
 Phusion Passenger to reside in <span class="monospaced">/opt/passenger-x.x.x</span>:</p></div>
@@ -1326,11 +1492,11 @@ installation. Furthermore, the <em>passenger-x.x.x</em> folder must be accessibl
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_installing_via_a_native_linux_package" data-comment-topic="installing-via-a-native-linux-package-i1tmhg">2.1.5. Installing via a native Linux package</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_installing_via_a_native_linux_package"></span><h4 data-comment-topic="installing-via-a-native-linux-package-i1tmhg" data-anchor="_installing_via_a_native_linux_package">2.1.5. Installing via a native Linux package</h4>
 <div class="paragraph"><p>John Leach from Brightbox has kindly provided a Ubuntu packages for Phusion Passenger. The package is available from the <a href="http://wiki.brightbox.co.uk/docs:phusion-passenger">Brightbox repository</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_what_does_the_installer_do" data-comment-topic="what-does-the-installer-do--3a7z1w">2.1.6. What does the installer do?</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_what_does_the_installer_do"></span><h4 data-comment-topic="what-does-the-installer-do--3a7z1w" data-anchor="_what_does_the_installer_do">2.1.6. What does the installer do?</h4>
 <div class="paragraph"><p>Although we call it an “installer”, it doesn’t actually install anything.
 The installer checks whether all required dependencies are installed,
 compiles Phusion Passenger for you, and tells you how to modify the Apache
@@ -1341,25 +1507,25 @@ Phusion Passenger.</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_operating_system_specific_instructions_and_information" data-comment-topic="operating-system-specific-instructions-and-information-1dfz365">2.2. Operating system-specific instructions and information</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_operating_system_specific_instructions_and_information"></span><h3 data-comment-topic="operating-system-specific-instructions-and-information-1dfz365" data-anchor="_operating_system_specific_instructions_and_information">2.2. Operating system-specific instructions and information</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_macos_x" data-comment-topic="macos-x-1lcpbz2">2.2.1. MacOS X</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_macos_x"></span><h4 data-comment-topic="macos-x-1lcpbz2" data-anchor="_macos_x">2.2.1. MacOS X</h4>
 <div class="paragraph"><p>Ben Ruebenstein has written an excellent
 <a href="http://benr75.com/articles/2008/04/12/setup-mod_rails-phusion-mac-os-x-leopard">tutorial
 on installing Phusion Passenger on OS X</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_ubuntu_linux" data-comment-topic="ubuntu-linux-1xwc66">2.2.2. Ubuntu Linux</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_ubuntu_linux"></span><h4 data-comment-topic="ubuntu-linux-1xwc66" data-anchor="_ubuntu_linux">2.2.2. Ubuntu Linux</h4>
 <div class="paragraph"><p>Ben Hughes has written an <a href="http://www.railsgarden.com/2008/04/12/configurating-passenger-mod_rails-on-slicehost-with-ubuntu-710/">article on installing Phusion Passenger on Ubuntu</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_opensolaris" data-comment-topic="opensolaris-1e0dynj">2.2.3. OpenSolaris</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_opensolaris"></span><h4 data-comment-topic="opensolaris-1e0dynj" data-anchor="_opensolaris">2.2.3. OpenSolaris</h4>
 <div class="paragraph"><p>J Aaron Farr has written a <a href="http://cubiclemuses.com/cm/articles/2009/04/09/rails-passenger-open-solaris-ec2/">guide</a>
 about setting up Ruby on Rails and Phusion Passenger on OpenSolaris and EC2.</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_upgrading_or_downgrading_phusion_passenger" data-comment-topic="upgrading-or-downgrading-phusion-passenger-1dl8km6">2.3. Upgrading or downgrading Phusion Passenger</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_upgrading_or_downgrading_phusion_passenger"></span><h3 data-comment-topic="upgrading-or-downgrading-phusion-passenger-1dl8km6" data-anchor="_upgrading_or_downgrading_phusion_passenger">2.3. Upgrading or downgrading Phusion Passenger</h3>
 <div class="paragraph"><p>Upgrading or downgrading Phusion Passenger for Apache involves several steps.</p></div>
 <div class="olist arabic"><ol class="arabic">
 <li>
@@ -1399,7 +1565,7 @@ otherwise Phusion Passenger may malfunction.
 4. Restart Apache. You’re now done.</p></div>
 </li>
 </ol></div>
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="upgrade_or_downgrade_with_rubygems" class="float" data-comment-topic="obtaining-phusion-passenger-files-with-rubygems-8fz7a8">Obtaining Phusion Passenger files with RubyGems</h4>
+<span class="anchor_helper" id="upgrade_or_downgrade_with_rubygems"></span><h4 class="float" data-anchor="upgrade_or_downgrade_with_rubygems">Obtaining Phusion Passenger files with RubyGems</h4>
 <div class="paragraph">
 <div class="title">Open source</div>
 <p>You can obtain the files associated with the latest <em>open source</em> Phusion Passenger release by invoking the following command:</p>
@@ -1424,16 +1590,16 @@ otherwise Phusion Passenger may malfunction.
 <pre>sudo gem install passenger-enterprise-server-x.x.x.gem</pre>
 </div>
 </div>
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="upgrade_or_downgrade_with_tarball" class="float" data-comment-topic="obtaining-phusion-passenger-files-through-a-tarball-evcm0j">Obtaining Phusion Passenger files through a tarball</h4>
+<span class="anchor_helper" id="upgrade_or_downgrade_with_tarball"></span><h4 class="float" data-anchor="upgrade_or_downgrade_with_tarball">Obtaining Phusion Passenger files through a tarball</h4>
 <div class="paragraph"><p>You can obtain the files associated with the latest <em>open source</em> Phusion Passenger release by downloading the tarball linked from <a href="https://www.phusionpassenger.com/download">the Phusion Passenger download page</a>. If you want a specific version, please refer to the release archive on <a href="http://rubyforge.org/frs/?group_id=5873&amp;release_id=46919">RubyForge</a>.</p></div>
 <div class="paragraph"><p>If you’re using <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a> then you should obtain the tarball from the <a href="https://www.phusionpassenger.com/orders">Customer Area</a> instead. Login with your order reference and password. The Customer Area will show you a list of files. Download the tarball for the version you want (<span class="monospaced">passenger-enterprise-server-x.x.x.tar.gz</span>).</p></div>
 <div class="paragraph"><p>Once you’ve obtained the tarball, extract it somewhere:</p></div>
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="upgrade_or_downgrade_with_linux_packages" class="float" data-comment-topic="upgrading-with-native-linux-packages-jievu8">Upgrading with native Linux packages</h4>
+<span class="anchor_helper" id="upgrade_or_downgrade_with_linux_packages"></span><h4 class="float" data-anchor="upgrade_or_downgrade_with_linux_packages">Upgrading with native Linux packages</h4>
 <div class="paragraph"><p>When using native Linux packages, it is only possible to upgrade, not downgrade. Native Linux packages are only available for the open source Phusion Passenger, not for Phusion Passenger Enterprise.</p></div>
 <div class="paragraph"><p>Native Linux packages are contributed by third parties. Although they update pretty quickly, they lag behind gem and tarball releases, perhaps by a few days. Please learn more about native Linux packages <a href="https://www.phusionpassenger.com/native_packages">at the Phusion Passenger website</a>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_unloading_disabling_phusion_passenger_from_apache_without_uninstalling_it" data-comment-topic="unloading-disabling-phusion-passenger-from-apache-without-uninstalling-it-s1axnx">2.4. Unloading (disabling) Phusion Passenger from Apache without uninstalling it</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_unloading_disabling_phusion_passenger_from_apache_without_uninstalling_it"></span><h3 data-comment-topic="unloading-disabling-phusion-passenger-from-apache-without-uninstalling-it-s1axnx" data-anchor="_unloading_disabling_phusion_passenger_from_apache_without_uninstalling_it">2.4. Unloading (disabling) Phusion Passenger from Apache without uninstalling it</h3>
 <div class="paragraph"><p>You can temporarily unload (disable) Phusion Passenger from Apache, without
 uninstalling the Phusion Passenger files, so that Apache behaves as if Phusion
 Passenger was never installed in the first place. This might be useful to you if,
@@ -1499,7 +1665,7 @@ NameVirtualHosts *:80
 <div class="paragraph"><p>After you’ve done this, save the file and restart Apache.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_uninstalling_phusion_passenger" data-comment-topic="uninstalling-phusion-passenger-1qb4ssq">2.5. Uninstalling Phusion Passenger</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_uninstalling_phusion_passenger"></span><h3 data-comment-topic="uninstalling-phusion-passenger-1qb4ssq" data-anchor="_uninstalling_phusion_passenger">2.5. Uninstalling Phusion Passenger</h3>
 <div class="paragraph"><p>To uninstall Phusion Passenger, please first remove all Phusion Passenger
 configuration directives from your Apache configuration file(s). After you’ve
 done this, you need to remove the Phusion Passenger files.</p></div>
@@ -1528,7 +1694,7 @@ If you installed Phusion Passenger via a Debian package, then remove type
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_deploying_a_ruby_on_rails_1_x_or_2_x_but_not_rails_gt_3_x_application" data-comment-topic="deploying-a-ruby-on-rails-1-x-or-2-x-but-not-rails-3-x-application-9r92hi">3. Deploying a Ruby on Rails 1.x or 2.x (but NOT Rails &gt;= 3.x) application</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_deploying_a_ruby_on_rails_1_x_or_2_x_but_not_rails_gt_3_x_application"></span><h2 data-comment-topic="deploying-a-ruby-on-rails-1-x-or-2-x-but-not-rails-3-x-application-9r92hi" data-anchor="_deploying_a_ruby_on_rails_1_x_or_2_x_but_not_rails_gt_3_x_application">3. Deploying a Ruby on Rails 1.x or 2.x (but NOT Rails &gt;= 3.x) application</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Suppose you have a Ruby on Rails application in <em>/webapps/mycook</em>, and you own
 the domain <em>www.mycook.com</em>. You can either deploy your application to the
@@ -1546,7 +1712,7 @@ are run, is “production”. You can change this by changing the
 </tr></table>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_deploying_to_a_virtual_host_8217_s_root" data-comment-topic="deploying-to-a-virtual-host-s-root-zzo4v7">3.1. Deploying to a virtual host’s root</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_deploying_to_a_virtual_host_8217_s_root"></span><h3 data-comment-topic="deploying-to-a-virtual-host-s-root-zzo4v7" data-anchor="_deploying_to_a_virtual_host_8217_s_root">3.1. Deploying to a virtual host’s root</h3>
 <div class="paragraph"><p>Add a virtual host entry to your Apache configuration file. Make sure that the
 following conditions are met:</p></div>
 <div class="ulist"><ul>
@@ -1602,7 +1768,7 @@ all parent folders. That is, /webapps/mycook and /webapps must also be readable 
 <div class="paragraph"><p>Then restart Apache. The application has now been deployed.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="deploying_rails_to_sub_uri" data-comment-topic="deploying-to-a-sub-uri-zekba6">3.2. Deploying to a sub URI</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="deploying_rails_to_sub_uri"></span><h3 data-comment-topic="deploying-to-a-sub-uri-zekba6" data-anchor="deploying_rails_to_sub_uri">3.2. Deploying to a sub URI</h3>
 <div class="paragraph"><p>Suppose that you already have a virtual host:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
@@ -1691,7 +1857,7 @@ for more information.</td>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_redeploying_restarting_the_ruby_on_rails_application" data-comment-topic="redeploying-restarting-the-ruby-on-rails-application--m5zqc6">3.3. Redeploying (restarting the Ruby on Rails application)</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_redeploying_restarting_the_ruby_on_rails_application"></span><h3 data-comment-topic="redeploying-restarting-the-ruby-on-rails-application--m5zqc6" data-anchor="_redeploying_restarting_the_ruby_on_rails_application">3.3. Redeploying (restarting the Ruby on Rails application)</h3>
 <div class="paragraph"><p>Deploying a new version of a Ruby on Rails application is as simple as
 re-uploading the application files, and restarting the application.</p></div>
 <div class="paragraph"><p>There are two ways to restart the application:</p></div>
@@ -1722,20 +1888,20 @@ of this file has changed in order to determine whether the application should
 be restarted.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_migrations" data-comment-topic="migrations-15238b4">3.4. Migrations</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_migrations"></span><h3 data-comment-topic="migrations-15238b4" data-anchor="_migrations">3.4. Migrations</h3>
 <div class="paragraph"><p>Phusion Passenger is not related to Ruby on Rails migrations in any way. To
 run migrations on your deployment server, please login to your deployment
 server (e.g. with <em>ssh</em>) and type <span class="monospaced">rake db:migrate RAILS_ENV=production</span> in
 a shell console, just like one would normally run migrations.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_capistrano_integration" data-comment-topic="capistrano-integration-1o4cbyq">3.5. Capistrano integration</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_capistrano_integration"></span><h3 data-comment-topic="capistrano-integration-1o4cbyq" data-anchor="_capistrano_integration">3.5. Capistrano integration</h3>
 <div class="paragraph"><p>See <a href="#capistrano">Capistrano recipe</a>.</p></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_deploying_a_rack_based_ruby_application_including_rails_gt_3" data-comment-topic="deploying-a-rack-based-ruby-application-including-rails-3--hcs66f">4. Deploying a Rack-based Ruby application (including Rails &gt;= 3)</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_deploying_a_rack_based_ruby_application_including_rails_gt_3"></span><h2 data-comment-topic="deploying-a-rack-based-ruby-application-including-rails-3--hcs66f" data-anchor="_deploying_a_rack_based_ruby_application_including_rails_gt_3">4. Deploying a Rack-based Ruby application (including Rails &gt;= 3)</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Phusion Passenger supports arbitrary Ruby web applications that follow the
 <a href="http://rack.rubyforge.org/">Rack</a> interface.</p></div>
@@ -1788,7 +1954,7 @@ are run, is “production”. You can change this by changing the
 </tr></table>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_tutorial_example_writing_and_deploying_a_hello_world_rack_application" data-comment-topic="tutorial-example-writing-and-deploying-a-hello-world-rack-application-axp5z5">4.1. Tutorial/example: writing and deploying a Hello World Rack application</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_tutorial_example_writing_and_deploying_a_hello_world_rack_application"></span><h3 data-comment-topic="tutorial-example-writing-and-deploying-a-hello-world-rack-application-axp5z5" data-anchor="_tutorial_example_writing_and_deploying_a_hello_world_rack_application">4.1. Tutorial/example: writing and deploying a Hello World Rack application</h3>
 <div class="paragraph"><p>First we create a Phusion Passenger-compliant Rack directory structure:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
@@ -1828,7 +1994,7 @@ the Apache configuration file:</p></div>
 under the URL <em>http://www.rackexample.com/</em>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_deploying_to_a_virtual_host_8217_s_root_2" data-comment-topic="deploying-to-a-virtual-host-s-root-ab4zj6">4.2. Deploying to a virtual host’s root</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_deploying_to_a_virtual_host_8217_s_root_2"></span><h3 data-comment-topic="deploying-to-a-virtual-host-s-root-ab4zj6" data-anchor="_deploying_to_a_virtual_host_8217_s_root_2">4.2. Deploying to a virtual host’s root</h3>
 <div class="paragraph"><p>Add a virtual host entry to your Apache configuration file. Make sure that the
 following conditions are met:</p></div>
 <div class="ulist"><ul>
@@ -1884,7 +2050,7 @@ all parent folders. That is, /webapps/rackapp and /webapps must also be readable
 <div class="paragraph"><p>Then restart Apache. The application has now been deployed.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="deploying_rack_to_sub_uri" data-comment-topic="deploying-to-a-sub-uri-13rfygg">4.3. Deploying to a sub URI</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="deploying_rack_to_sub_uri"></span><h3 data-comment-topic="deploying-to-a-sub-uri-13rfygg" data-anchor="deploying_rack_to_sub_uri">4.3. Deploying to a sub URI</h3>
 <div class="paragraph"><p>Suppose that you already have a virtual host:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
@@ -1961,7 +2127,7 @@ MultiViews is disabled for this folder.
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_redeploying_restarting_the_rack_application" data-comment-topic="redeploying-restarting-the-rack-application--18m41m1">4.4. Redeploying (restarting the Rack application)</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_redeploying_restarting_the_rack_application"></span><h3 data-comment-topic="redeploying-restarting-the-rack-application--18m41m1" data-anchor="_redeploying_restarting_the_rack_application">4.4. Redeploying (restarting the Rack application)</h3>
 <div class="paragraph"><p>Deploying a new version of a Rack application is as simple as
 re-uploading the application files, and restarting the application.</p></div>
 <div class="paragraph"><p>There are two ways to restart the application:</p></div>
@@ -1988,10 +2154,10 @@ command line:</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_rackup_specifications_for_various_web_frameworks" data-comment-topic="rackup-specifications-for-various-web-frameworks-ndsqc2">4.5. Rackup specifications for various web frameworks</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_rackup_specifications_for_various_web_frameworks"></span><h3 data-comment-topic="rackup-specifications-for-various-web-frameworks-ndsqc2" data-anchor="_rackup_specifications_for_various_web_frameworks">4.5. Rackup specifications for various web frameworks</h3>
 <div class="paragraph"><p>This subsection shows example <em>config.ru</em> files for various web frameworks.</p></div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_camping" data-comment-topic="camping-1kxexk0">4.5.1. Camping</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_camping"></span><h4 data-comment-topic="camping-1kxexk0" data-anchor="_camping">4.5.1. Camping</h4>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>require 'rubygems'
@@ -2010,7 +2176,7 @@ run Rack::Adapter::Camping.new(Blog)</pre>
 <div class="paragraph"><p>For Camping versions 2.0 and up, using <span class="monospaced">run Blog</span> as the final line will do.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_halcyon" data-comment-topic="halcyon-1ghnpmz">4.5.2. Halcyon</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_halcyon"></span><h4 data-comment-topic="halcyon-1ghnpmz" data-anchor="_halcyon">4.5.2. Halcyon</h4>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>require 'rubygems'
@@ -2022,7 +2188,7 @@ run Halcyon::Runner.new</pre>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_mack" data-comment-topic="mack-miht6b">4.5.3. Mack</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_mack"></span><h4 data-comment-topic="mack-miht6b" data-anchor="_mack">4.5.3. Mack</h4>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>ENV["MACK_ENV"] = ENV["RACK_ENV"]
@@ -2034,7 +2200,7 @@ run Mack::Utils::Server.build_app</pre>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_merb" data-comment-topic="merb-iyj7qy">4.5.4. Merb</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_merb"></span><h4 data-comment-topic="merb-iyj7qy" data-anchor="_merb">4.5.4. Merb</h4>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>require 'rubygems'
@@ -2053,7 +2219,7 @@ run Merb::Rack::Application.new</pre>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_ramaze" data-comment-topic="ramaze-boddtj">4.5.5. Ramaze</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_ramaze"></span><h4 data-comment-topic="ramaze-boddtj" data-anchor="_ramaze">4.5.5. Ramaze</h4>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>require "rubygems"
@@ -2066,7 +2232,7 @@ run Ramaze::Adapter::Base</pre>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_sinatra" data-comment-topic="sinatra-1hubto4">4.5.6. Sinatra</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_sinatra"></span><h4 data-comment-topic="sinatra-1hubto4" data-anchor="_sinatra">4.5.6. Sinatra</h4>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>require 'rubygems'
@@ -2081,14 +2247,14 @@ run Sinatra::Application</pre>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_configuring_phusion_passenger" data-comment-topic="configuring-phusion-passenger-11oztoe">5. Configuring Phusion Passenger</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_configuring_phusion_passenger"></span><h2 data-comment-topic="configuring-phusion-passenger-11oztoe" data-anchor="_configuring_phusion_passenger">5. Configuring Phusion Passenger</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>After installation, Phusion Passenger does not need any further configurations.
 Nevertheless, the system administrator may be interested in changing
 Phusion Passenger’s behavior. Phusion Passenger’s Apache module supports the
 following configuration options:</p></div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_passengerroot_lt_directory_gt" data-comment-topic="passengerroot-directory--sere8l">5.1. PassengerRoot &lt;directory&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerroot_lt_directory_gt"></span><h3 data-comment-topic="passengerroot-directory--sere8l" data-anchor="_passengerroot_lt_directory_gt">5.1. PassengerRoot &lt;directory&gt;</h3>
 <div class="paragraph"><p>The location to the Phusion Passenger root directory. This configuration option
 is essential to Phusion Passenger, and allows Phusion Passenger to locate its own
 data files. The correct value is given by the installer.</p></div>
@@ -2098,13 +2264,13 @@ this option as well. Please read
 <div class="paragraph"><p>This required option may only occur once, in the global server configuration.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerRuby" data-comment-topic="passengerruby-filename--1r3fv73">5.2. PassengerRuby &lt;filename&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerRuby"></span><h3 data-comment-topic="passengerruby-filename--1r3fv73" data-anchor="PassengerRuby">5.2. PassengerRuby &lt;filename&gt;</h3>
 <div class="paragraph"><p>This option allows one to specify the Ruby interpreter to use.</p></div>
 <div class="paragraph"><p>This option may only occur once, in the global server configuration.
 The default is <em>ruby</em>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerAppRoot" data-comment-topic="passengerapproot-path-to-root--uf24yd">5.3. PassengerAppRoot &lt;path/to/root&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerAppRoot"></span><h3 data-comment-topic="passengerapproot-path-to-root--uf24yd" data-anchor="PassengerAppRoot">5.3. PassengerAppRoot &lt;path/to/root&gt;</h3>
 <div class="paragraph"><p>By default, Phusion Passenger assumes that the application’s root directory
 is the parent directory of the <em>public</em> directory. This option allows one to
 specify the application’s root independently from the DocumentRoot, which
@@ -2146,7 +2312,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerSpawnMethod" data-comment-topic="passengerspawnmethod-string--sodg2y">5.4. PassengerSpawnMethod &lt;string&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerSpawnMethod"></span><h3 data-comment-topic="passengerspawnmethod-string--sodg2y" data-anchor="PassengerSpawnMethod">5.4. PassengerSpawnMethod &lt;string&gt;</h3>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -2243,7 +2409,7 @@ In a virtual host configuration block.
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>smart-lv2</em>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerUseGlobalQueue" data-comment-topic="passengeruseglobalqueue-on-off--1ki369">5.5. PassengerUseGlobalQueue &lt;on|off&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerUseGlobalQueue"></span><h3 data-comment-topic="passengeruseglobalqueue-on-off--1ki369" data-anchor="PassengerUseGlobalQueue">5.5. PassengerUseGlobalQueue &lt;on|off&gt;</h3>
 <div class="paragraph"><p>Turns the use of global queuing on or off.</p></div>
 <div class="paragraph"><p>This option may occur in the following places:</p></div>
 <div class="ulist"><ul>
@@ -2340,7 +2506,7 @@ process that becomes available will take from the queue, and so this
 “queuing-behind-long-running-request” problem will never occur.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_passengerenabled_lt_on_off_gt" data-comment-topic="passengerenabled-on-off--74rzth">5.6. PassengerEnabled &lt;on|off&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerenabled_lt_on_off_gt"></span><h3 data-comment-topic="passengerenabled-on-off--74rzth" data-anchor="_passengerenabled_lt_on_off_gt">5.6. PassengerEnabled &lt;on|off&gt;</h3>
 <div class="paragraph"><p>You can set this option to <em>off</em> to completely disable Phusion Passenger for
 a certain location. This is useful if, for example, you want to integrate a PHP
 application into the same virtual host as a Rails application.</p></div>
@@ -2387,7 +2553,7 @@ In <em>.htaccess</em>.
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>on</em>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerTempDir" data-comment-topic="passengertempdir-directory--68h2ng">5.7. PassengerTempDir &lt;directory&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerTempDir"></span><h3 data-comment-topic="passengertempdir-directory--68h2ng" data-anchor="PassengerTempDir">5.7. PassengerTempDir &lt;directory&gt;</h3>
 <div class="paragraph"><p>Specifies the directory that Phusion Passenger should use for storing temporary
 files. This includes things such as Unix socket files, buffered file uploads
 (see also <a href="#PassengerUploadBufferDir">PassengerUploadBufferDir</a>), etc.</p></div>
@@ -2416,7 +2582,7 @@ sudo -E passenger-status
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerUploadBufferDir" data-comment-topic="passengeruploadbufferdir-directory--kdr8at">5.8. PassengerUploadBufferDir &lt;directory&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerUploadBufferDir"></span><h3 data-comment-topic="passengeruploadbufferdir-directory--kdr8at" data-anchor="PassengerUploadBufferDir">5.8. PassengerUploadBufferDir &lt;directory&gt;</h3>
 <div class="paragraph"><p>Phusion Passenger buffers large file uploads to disk in order prevent slow file
 uploads from blocking web applications. By default, a subdirectory in the
 system’s temporary files directory (or a subdirectory in the directory specified
@@ -2459,7 +2625,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverrides Options</span>
 <div class="paragraph"><p>In each place, it may be specified at most once.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_passengerrestartdir_lt_directory_gt" data-comment-topic="passengerrestartdir-directory--1fmhmv0">5.9. PassengerRestartDir &lt;directory&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerrestartdir_lt_directory_gt"></span><h3 data-comment-topic="passengerrestartdir-directory--1fmhmv0" data-anchor="_passengerrestartdir_lt_directory_gt">5.9. PassengerRestartDir &lt;directory&gt;</h3>
 <div class="paragraph"><p>As described in the deployment chapters of this document, Phusion Passenger
 checks the file <em>tmp/restart.txt</em> in the applications'
 <a href="#application_root">root directory</a> for restarting applications. Sometimes it
@@ -2533,7 +2699,7 @@ allow the attacker to cause a Denial-of-Service.</p>
 directory that’s readable by Apache, but only writable by administrators.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerBufferResponse" data-comment-topic="passengerbufferresponse-on-off--1y7ilka">5.10. PassengerBufferResponse &lt;on|off&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerBufferResponse"></span><h3 data-comment-topic="passengerbufferresponse-on-off--1y7ilka" data-anchor="PassengerBufferResponse">5.10. PassengerBufferResponse &lt;on|off&gt;</h3>
 <div class="paragraph"><p>When turned on, application-generated responses are buffered in memory. By buffering
 responses, protection is provided against slow HTTP clients that can not read your
 response immediately.</p></div>
@@ -2616,7 +2782,7 @@ if responses can be huge. Because entire responses are buffered in memory when t
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="PassengerRollingRestarts" data-comment-topic="passengerrollingrestarts">5.11. PassengerRollingRestarts &lt;on|off&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerRollingRestarts"></span><h3 data-comment-topic="passengerrollingrestarts" data-anchor="PassengerRollingRestarts">5.11. PassengerRollingRestarts &lt;on|off&gt;</h3>
 <div class="paragraph"><p><strong>This feature is only available in <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a>. It was introduced in version 3.0.0. <a href="https://www.phusionpassenger.com/download">Buy Phusion Passenger Enterprise here.</a></strong></p></div>
 <div class="paragraph"><p>Enables or disables support for rolling restarts. Normally when you
 restart an application (by touching restart.txt), Phusion Passenger would
@@ -2689,7 +2855,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>off</em>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_passengerresistdeploymenterrors_lt_on_off_gt" data-comment-topic="passengerresistdeploymenterrors">5.12. PassengerResistDeploymentErrors &lt;on|off&gt;</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerresistdeploymenterrors_lt_on_off_gt"></span><h3 data-comment-topic="passengerresistdeploymenterrors" data-anchor="_passengerresistdeploymenterrors_lt_on_off_gt">5.12. PassengerResistDeploymentErrors &lt;on|off&gt;</h3>
 <div class="paragraph"><p><strong>This feature is only available in <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a>. It was introduced in version 3.0.0. <a href="https://www.phusionpassenger.com/download">Buy Phusion Passenger Enterprise here.</a></strong></p></div>
 <div class="paragraph"><p>Enables or disables resistance against deployment errors.</p></div>
 <div class="paragraph"><p>Suppose you’ve upgraded your application and you’ve issues a command to restart it (by touching restart.txt), but the application code contains an error that prevents Phusion Passenger from successfully spawning a process (e.g. a syntax error). Phusion Passenger would normally display an error message in response to this.</p></div>
@@ -2739,15 +2905,15 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>off</em>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_security_options" data-comment-topic="security-options-1pb75ho">5.13. Security options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_security_options"></span><h3 data-comment-topic="security-options-1pb75ho" data-anchor="_security_options">5.13. Security options</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerUserSwitching" data-comment-topic="passengeruserswitching">5.13.1. PassengerUserSwitching &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerUserSwitching"></span><h4 data-comment-topic="passengeruserswitching" data-anchor="PassengerUserSwitching">5.13.1. PassengerUserSwitching &lt;on|off&gt;</h4>
 <div class="paragraph"><p>Whether to enable <a href="#user_switching">user switching support</a>.</p></div>
 <div class="paragraph"><p>This option may only occur once, in the global server configuration.
 The default value is <em>on</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengeruser_lt_username_gt" data-comment-topic="passengeruser">5.13.2. PassengerUser &lt;username&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengeruser_lt_username_gt"></span><h4 data-comment-topic="passengeruser" data-anchor="_passengeruser_lt_username_gt">5.13.2. PassengerUser &lt;username&gt;</h4>
 <div class="paragraph"><p>If <a href="#user_switching">user switching support</a> is enabled, then Phusion Passenger will
 by default run the web application as the owner of the file <em>config/environment.rb</em>
 (for Rails apps) or <em>config.ru</em> (for Rack apps). This option allows you to override
@@ -2774,7 +2940,7 @@ In a <span class="monospaced">&lt;Directory&gt;</span> or <span class="monospace
 <div class="paragraph"><p>In each place, it may be specified at most once.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengergroup_lt_group_name_gt" data-comment-topic="passengergroup">5.13.3. PassengerGroup &lt;group name&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengergroup_lt_group_name_gt"></span><h4 data-comment-topic="passengergroup" data-anchor="_passengergroup_lt_group_name_gt">5.13.3. PassengerGroup &lt;group name&gt;</h4>
 <div class="paragraph"><p>If <a href="#user_switching">user switching support</a> is enabled, then Phusion Passenger will
 by default run the web application as the primary group of the owner of the file
 <em>config/environment.rb</em> (for Rails apps) or <em>config.ru</em> (for Rack apps). This option
@@ -2803,7 +2969,7 @@ In a <span class="monospaced">&lt;Directory&gt;</span> or <span class="monospace
 <div class="paragraph"><p>In each place, it may be specified at most once.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerDefaultUser" data-comment-topic="passengerdefaultuser">5.13.4. PassengerDefaultUser &lt;username&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerDefaultUser"></span><h4 data-comment-topic="passengerdefaultuser" data-anchor="PassengerDefaultUser">5.13.4. PassengerDefaultUser &lt;username&gt;</h4>
 <div class="paragraph"><p>Phusion Passenger enables <a href="#user_switching">user switching support</a> by default.
 This configuration option allows one to specify the user that applications must
 run as, if user switching fails or is disabled.</p></div>
@@ -2811,7 +2977,7 @@ run as, if user switching fails or is disabled.</p></div>
 The default value is <em>nobody</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerDefaultGroup" data-comment-topic="passengerdefaultgroup">5.13.5. PassengerDefaultGroup &lt;group name&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerDefaultGroup"></span><h4 data-comment-topic="passengerdefaultgroup" data-anchor="PassengerDefaultGroup">5.13.5. PassengerDefaultGroup &lt;group name&gt;</h4>
 <div class="paragraph"><p>Phusion Passenger enables <a href="#user_switching">user switching support</a> by default.
 This configuration option allows one to specify the group that applications must
 run as, if user switching fails or is disabled.</p></div>
@@ -2820,7 +2986,7 @@ The default value is the primary group of the user specifified by
 <a href="#PassengerDefaultUser">PassengerDefaultUser</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengerfriendlyerrorpages_lt_on_off_gt" data-comment-topic="passengerfriendlyerrorpages">5.13.6. PassengerFriendlyErrorPages &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerfriendlyerrorpages_lt_on_off_gt"></span><h4 data-comment-topic="passengerfriendlyerrorpages" data-anchor="_passengerfriendlyerrorpages_lt_on_off_gt">5.13.6. PassengerFriendlyErrorPages &lt;on|off&gt;</h4>
 <div class="paragraph"><p>Phusion Passenger can display friendly error pages whenever an application fails
 to start. This friendly error page presents the startup error message, some
 suggestions for solving the problem, and a backtrace. This feature is very useful
@@ -2855,9 +3021,9 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_resource_control_and_optimization_options" data-comment-topic="resource-control-and-optimization-options-zu2f7u">5.14. Resource control and optimization options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_resource_control_and_optimization_options"></span><h3 data-comment-topic="resource-control-and-optimization-options-zu2f7u" data-anchor="_resource_control_and_optimization_options">5.14. Resource control and optimization options</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengermaxpoolsize_lt_integer_gt" data-comment-topic="passengermaxpoolsize-integer--am64q8">5.14.1. PassengerMaxPoolSize &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengermaxpoolsize_lt_integer_gt"></span><h4 data-comment-topic="passengermaxpoolsize-integer--am64q8" data-anchor="_passengermaxpoolsize_lt_integer_gt">5.14.1. PassengerMaxPoolSize &lt;integer&gt;</h4>
 <div class="paragraph"><p>The maximum number of <a href="#application_process">application processes</a> that may
 simultaneously exist. A larger number results in higher memory usage,
 but improved ability to handle concurrent HTTP clients.</p></div>
@@ -2884,7 +3050,7 @@ by about 33%, and it’s not hard to install.</td>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerMinInstances" data-comment-topic="passengermininstances-integer--wegq6b">5.14.2. PassengerMinInstances &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerMinInstances"></span><h4 data-comment-topic="passengermininstances-integer--wegq6b" data-anchor="PassengerMinInstances">5.14.2. PassengerMinInstances &lt;integer&gt;</h4>
 <div class="paragraph"><p>This specifies the minimum number of application processes that should exist for a
 given application. You should set this option to a
 non-zero value if you want to avoid potentially long startup times after a website
@@ -2955,7 +3121,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Limits</span> i
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>1</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengermaxinstances_lt_integer_gt" data-comment-topic="passengermaxinstances">5.14.3. PassengerMaxInstances &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengermaxinstances_lt_integer_gt"></span><h4 data-comment-topic="passengermaxinstances" data-anchor="_passengermaxinstances_lt_integer_gt">5.14.3. PassengerMaxInstances &lt;integer&gt;</h4>
 <div class="paragraph"><p><strong>This feature is only available in <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a>. It was introduced in version 3.0.0. <a href="https://www.phusionpassenger.com/download">Buy Phusion Passenger Enterprise here.</a></strong></p></div>
 <div class="paragraph"><p>The maximum number of application processes that may simultaneously exist
 for an application. This helps to make sure that a single application
@@ -2996,7 +3162,7 @@ on the other hand will be free to spawn up to 10 processes if it gets a lot of t
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengermaxinstancesperapp_lt_integer_gt" data-comment-topic="passengermaxinstancesperapp">5.14.4. PassengerMaxInstancesPerApp &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengermaxinstancesperapp_lt_integer_gt"></span><h4 data-comment-topic="passengermaxinstancesperapp" data-anchor="_passengermaxinstancesperapp_lt_integer_gt">5.14.4. PassengerMaxInstancesPerApp &lt;integer&gt;</h4>
 <div class="paragraph"><p>The maximum number of application processes that may simultaneously exist
 for a single application. This helps to make sure that a single application
 will not occupy all available slots in the application pool.</p></div>
@@ -3049,7 +3215,7 @@ the pool unequally, according to each web application’s relative importance.</
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerPoolIdleTime" data-comment-topic="passengerpoolidletime-integer--a3gunq">5.14.5. PassengerPoolIdleTime &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerPoolIdleTime"></span><h4 data-comment-topic="passengerpoolidletime-integer--a3gunq" data-anchor="PassengerPoolIdleTime">5.14.5. PassengerPoolIdleTime &lt;integer&gt;</h4>
 <div class="paragraph"><p>The maximum number of seconds that an application process may be idle. That is,
 if an application process hasn’t received any traffic after the given number of
 seconds, then it will be shutdown in order to conserve memory.</p></div>
@@ -3071,7 +3237,7 @@ applications, each which must be available at all times.</p></div>
 The default value is <em>300</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerMaxRequests" data-comment-topic="passengermaxrequests">5.14.6. PassengerMaxRequests &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerMaxRequests"></span><h4 data-comment-topic="passengermaxrequests" data-anchor="PassengerMaxRequests">5.14.6. PassengerMaxRequests &lt;integer&gt;</h4>
 <div class="paragraph"><p>The maximum number of requests an application process will process. After
 serving that many requests, the application process will be shut down and
 Phusion Passenger will restart it. A value of 0 means that there is no maximum:
@@ -3119,7 +3285,7 @@ measure to avoid memory leaks.</p></div>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerMaxRequestTime" data-comment-topic="passengermaxrequesttime-seconds--7qnz3x">5.14.7. PassengerMaxRequestTime &lt;seconds&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerMaxRequestTime"></span><h4 data-comment-topic="passengermaxrequesttime-seconds--7qnz3x" data-anchor="PassengerMaxRequestTime">5.14.7. PassengerMaxRequestTime &lt;seconds&gt;</h4>
 <div class="paragraph"><p><strong>This feature is only available in <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a>. It was introduced in version 3.0.0. <a href="https://www.phusionpassenger.com/download">Buy Phusion Passenger Enterprise here.</a></strong></p></div>
 <div class="paragraph"><p>The maximum amount of time, in seconds, that an application process may take
 to process a request. If the request takes longer than this amount of time,
@@ -3188,7 +3354,7 @@ measure to avoid freezing applications.</p></div>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerMemoryLimit" data-comment-topic="passengermemorylimit">5.14.8. PassengerMemoryLimit &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerMemoryLimit"></span><h4 data-comment-topic="passengermemorylimit" data-anchor="PassengerMemoryLimit">5.14.8. PassengerMemoryLimit &lt;integer&gt;</h4>
 <div class="paragraph"><p><strong>This feature is only available in <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a>. It was introduced in version 3.0.0. <a href="https://www.phusionpassenger.com/download">Buy Phusion Passenger Enterprise here.</a></strong></p></div>
 <div class="paragraph"><p>The maximum amount of memory that an application process may use, in megabytes.
 Once an application process has surpassed its memory limit, it will process
@@ -3274,7 +3440,7 @@ measure to avoid memory leaks.</p></div>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengerstatthrottlerate_lt_integer_gt" data-comment-topic="passengerstatthrottlerate">5.14.9. PassengerStatThrottleRate &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerstatthrottlerate_lt_integer_gt"></span><h4 data-comment-topic="passengerstatthrottlerate" data-anchor="_passengerstatthrottlerate_lt_integer_gt">5.14.9. PassengerStatThrottleRate &lt;integer&gt;</h4>
 <div class="paragraph"><p>By default, Phusion Passenger performs several filesystem checks (or, in
 programmers jargon, <em>stat() calls</em>) each time a request is processed:</p></div>
 <div class="ulist"><ul>
@@ -3326,7 +3492,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Limits</span> i
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>0</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerPreStart" data-comment-topic="passengerprestart-url--1dvgku9">5.14.10. PassengerPreStart &lt;url&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerPreStart"></span><h4 data-comment-topic="passengerprestart-url--1dvgku9" data-anchor="PassengerPreStart">5.14.10. PassengerPreStart &lt;url&gt;</h4>
 <div class="paragraph"><p>By default, Phusion Passenger does not start any application processes until said
 web application is first accessed. The result is that the first visitor of said
 web application might experience a small delay as Phusion Passenger is starting
@@ -3564,7 +3730,7 @@ the request ending up at a different web server in the cluster.</p></div>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerHighPerformance" data-comment-topic="passengerhighperformance-on-off--zgc547">5.14.11. PassengerHighPerformance &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerHighPerformance"></span><h4 data-comment-topic="passengerhighperformance-on-off--zgc547" data-anchor="PassengerHighPerformance">5.14.11. PassengerHighPerformance &lt;on|off&gt;</h4>
 <div class="paragraph"><p>By default, Phusion Passenger is compatible with mod_rewrite and most other
 Apache modules. However, a lot of effort is required in order to be compatible.
 If you turn <em>PassengerHighPerformance</em> to <em>on</em>, then Phusion Passenger will be
@@ -3648,9 +3814,9 @@ then you can enable high performance mode for a certain URL only. For example:</
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_compatibility_options" data-comment-topic="compatibility-options-8jve5a">5.15. Compatibility options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_compatibility_options"></span><h3 data-comment-topic="compatibility-options-8jve5a" data-anchor="_compatibility_options">5.15. Compatibility options</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="PassengerResolveSymlinksInDocumentRoot" data-comment-topic="passengerresolvesymlinksindocumentroot-on-off--1r0qcp8">5.15.1. PassengerResolveSymlinksInDocumentRoot &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="PassengerResolveSymlinksInDocumentRoot"></span><h4 data-comment-topic="passengerresolvesymlinksindocumentroot-on-off--1r0qcp8" data-anchor="PassengerResolveSymlinksInDocumentRoot">5.15.1. PassengerResolveSymlinksInDocumentRoot &lt;on|off&gt;</h4>
 <div class="paragraph"><p>Configures whether Phusion Passenger should resolve symlinks in the document root.
 Please refer to <a href="#application_detection">How Phusion Passenger detects whether a virtual host is a web application</a> for more information.</p></div>
 <div class="paragraph"><p>This option may occur in the following places:</p></div>
@@ -3679,7 +3845,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 <div class="paragraph"><p>In each place, it may be specified at most once. It is off by default.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengerallowencodedslashes_lt_on_off_gt" data-comment-topic="passengerallowencodedslashes-on-off--1y3s1ww">5.15.2. PassengerAllowEncodedSlashes &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerallowencodedslashes_lt_on_off_gt"></span><h4 data-comment-topic="passengerallowencodedslashes-on-off--1y3s1ww" data-anchor="_passengerallowencodedslashes_lt_on_off_gt">5.15.2. PassengerAllowEncodedSlashes &lt;on|off&gt;</h4>
 <div class="paragraph"><p>By default, Apache doesn’t support URLs with encoded slashes (%2f), e.g. URLs like
 this: <span class="monospaced">/users/fujikura%2fyuu</span>. If you access such an URL then Apache will return a
 404 Not Found error. This can be solved by turning on PassengerAllowEncodedSlashes
@@ -3748,9 +3914,9 @@ displaying maintenance.html will work fine even for URLs starting with "/users".
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_logging_and_debugging_options" data-comment-topic="logging-and-debugging-options-el2cuc">5.16. Logging and debugging options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_logging_and_debugging_options"></span><h3 data-comment-topic="logging-and-debugging-options-el2cuc" data-anchor="_logging_and_debugging_options">5.16. Logging and debugging options</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengerloglevel_lt_integer_gt" data-comment-topic="passengerloglevel-integer--1v67p8l">5.16.1. PassengerLogLevel &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerloglevel_lt_integer_gt"></span><h4 data-comment-topic="passengerloglevel-integer--1v67p8l" data-anchor="_passengerloglevel_lt_integer_gt">5.16.1. PassengerLogLevel &lt;integer&gt;</h4>
 <div class="paragraph"><p>This option allows one to specify how much information Phusion Passenger should
 write to the Apache error log file. A higher log level value means that more
 information will be logged.</p></div>
@@ -3783,14 +3949,14 @@ information will be logged.</p></div>
 The default is <em>0</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengerdebuglogfile_lt_filename_gt" data-comment-topic="passengerdebuglogfile-filename--1tfy4z9">5.16.2. PassengerDebugLogFile &lt;filename&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerdebuglogfile_lt_filename_gt"></span><h4 data-comment-topic="passengerdebuglogfile-filename--1tfy4z9" data-anchor="_passengerdebuglogfile_lt_filename_gt">5.16.2. PassengerDebugLogFile &lt;filename&gt;</h4>
 <div class="paragraph"><p>By default Phusion Passenger debugging and error messages are written to the global
 web server error log. This option allows one to specify the file that debugging and
 error messages should be written to instead.</p></div>
 <div class="paragraph"><p>This option may only occur once, in the global server configuration.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_passengerdebugger_lt_on_off_gt" data-comment-topic="passengerdebugger-on-off--1lgdk7g">5.16.3. PassengerDebugger &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_passengerdebugger_lt_on_off_gt"></span><h4 data-comment-topic="passengerdebugger-on-off--1lgdk7g" data-anchor="_passengerdebugger_lt_on_off_gt">5.16.3. PassengerDebugger &lt;on|off&gt;</h4>
 <div class="paragraph"><p><strong>This feature is only available in <a href="https://www.phusionpassenger.com/enterprise">Phusion Passenger Enterprise</a>. It was introduced in version 3.0.0. <a href="https://www.phusionpassenger.com/download">Buy Phusion Passenger Enterprise here.</a></strong></p></div>
 <div class="paragraph"><p>Turns support for application debugging on or off. In case of Ruby applications,
 turning this option on will cause them to load the <span class="monospaced">ruby-debug</span> gem (when on Ruby 1.8)
@@ -3830,9 +3996,9 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_ruby_on_rails_specific_options" data-comment-topic="ruby-on-rails-specific-options-1t10wfu">5.17. Ruby on Rails-specific options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_ruby_on_rails_specific_options"></span><h3 data-comment-topic="ruby-on-rails-specific-options-1t10wfu" data-anchor="_ruby_on_rails_specific_options">5.17. Ruby on Rails-specific options</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsautodetect_lt_on_off_gt" data-comment-topic="railsautodetect-on-off--tpigsd">5.17.1. RailsAutoDetect &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsautodetect_lt_on_off_gt"></span><h4 data-comment-topic="railsautodetect-on-off--tpigsd" data-anchor="_railsautodetect_lt_on_off_gt">5.17.1. RailsAutoDetect &lt;on|off&gt;</h4>
 <div class="paragraph"><p>Whether Phusion Passenger should automatically detect whether a virtual host’s
 document root is a Ruby on Rails application. The default is <em>on</em>.</p></div>
 <div class="paragraph"><p>This option may occur in the global server configuration or in a virtual host
@@ -3864,7 +4030,7 @@ application by using the <a href="#RailsBaseURI">RailsBaseURI</a> configuration 
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="RailsBaseURI" data-comment-topic="railsbaseuri-uri--1txrw3k">5.17.2. RailsBaseURI &lt;uri&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="RailsBaseURI"></span><h4 data-comment-topic="railsbaseuri-uri--1txrw3k" data-anchor="RailsBaseURI">5.17.2. RailsBaseURI &lt;uri&gt;</h4>
 <div class="paragraph"><p>Used to specify that the given URI is a Rails application. See
 <a href="#deploying_rails_to_sub_uri">Deploying Rails to a sub URI</a> for an example.</p></div>
 <div class="paragraph"><p>It is allowed to specify this option multiple times. Do this to deploy multiple
@@ -3894,7 +4060,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 </ul></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="rails_env" data-comment-topic="railsenv-string--1b0xxvu">5.17.3. RailsEnv &lt;string&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="rails_env"></span><h4 data-comment-topic="railsenv-string--1b0xxvu" data-anchor="rails_env">5.17.3. RailsEnv &lt;string&gt;</h4>
 <div class="paragraph"><p>This option allows one to specify the default <span class="monospaced">RAILS_ENV</span> value.</p></div>
 <div class="paragraph"><p>This option may occur in the following places:</p></div>
 <div class="ulist"><ul>
@@ -3922,7 +4088,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>production</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsframeworkspawneridletime_lt_integer_gt" data-comment-topic="railsframeworkspawneridletime-integer--1ai8dgq">5.17.4. RailsFrameworkSpawnerIdleTime &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsframeworkspawneridletime_lt_integer_gt"></span><h4 data-comment-topic="railsframeworkspawneridletime-integer--1ai8dgq" data-anchor="_railsframeworkspawneridletime_lt_integer_gt">5.17.4. RailsFrameworkSpawnerIdleTime &lt;integer&gt;</h4>
 <div class="paragraph"><p>The FrameworkSpawner server (explained in <a href="#spawning_methods_explained">Spawning methods explained</a>) has an idle timeout, just like the backend processes spawned by
 Phusion Passenger do. That is, it will automatically shutdown if it hasn’t done
 anything for a given period.</p></div>
@@ -3951,7 +4117,7 @@ In a virtual host configuration block.
 <div class="paragraph"><p>In each place, it may be specified at most once. The default value is <em>1800</em> (30 minutes).</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsappspawneridletime_lt_integer_gt" data-comment-topic="railsappspawneridletime-integer--1awgog1">5.17.5. RailsAppSpawnerIdleTime &lt;integer&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsappspawneridletime_lt_integer_gt"></span><h4 data-comment-topic="railsappspawneridletime-integer--1awgog1" data-anchor="_railsappspawneridletime_lt_integer_gt">5.17.5. RailsAppSpawnerIdleTime &lt;integer&gt;</h4>
 <div class="paragraph"><p>The ApplicationSpawner server (explained in <a href="#spawning_methods_explained">Spawning methods explained</a>) has an idle timeout, just like the backend processes spawned by
 Phusion Passenger do. That is, it will automatically shutdown if it hasn’t done
 anything for a given period.</p></div>
@@ -3981,9 +4147,9 @@ In a virtual host configuration block.
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_rack_and_rails_gt_3_specific_options" data-comment-topic="rack-specific-options-wk9qzt">5.18. Rack and Rails &gt;= 3 specific options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_rack_and_rails_gt_3_specific_options"></span><h3 data-comment-topic="rack-specific-options-wk9qzt" data-anchor="_rack_and_rails_gt_3_specific_options">5.18. Rack and Rails &gt;= 3 specific options</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_rackautodetect_lt_on_off_gt" data-comment-topic="rackautodetect-on-off--vl1lxy">5.18.1. RackAutoDetect &lt;on|off&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_rackautodetect_lt_on_off_gt"></span><h4 data-comment-topic="rackautodetect-on-off--vl1lxy" data-anchor="_rackautodetect_lt_on_off_gt">5.18.1. RackAutoDetect &lt;on|off&gt;</h4>
 <div class="paragraph"><p>Whether Phusion Passenger should automatically detect whether a virtual host’s
 document root is a Rack application. The default is <em>on</em>.</p></div>
 <div class="paragraph"><p>This option may occur in the global server configuration or in a virtual host
@@ -4015,7 +4181,7 @@ application by using the <a href="#RackBaseURI">RackBaseURI</a> configuration op
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="RackBaseURI" data-comment-topic="rackbaseuri-uri--1to24pj">5.18.2. RackBaseURI &lt;uri&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="RackBaseURI"></span><h4 data-comment-topic="rackbaseuri-uri--1to24pj" data-anchor="RackBaseURI">5.18.2. RackBaseURI &lt;uri&gt;</h4>
 <div class="paragraph"><p>Used to specify that the given URI is a Rack application. See
 <a href="#deploying_rack_to_sub_uri">Deploying Rack to a sub URI</a> for an example.</p></div>
 <div class="paragraph"><p>It is allowed to specify this option multiple times. Do this to deploy multiple
@@ -4045,7 +4211,7 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 </ul></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="rack_env" data-comment-topic="rackenv-string--vve9py">5.18.3. RackEnv &lt;string&gt;</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="rack_env"></span><h4 data-comment-topic="rackenv-string--vve9py" data-anchor="rack_env">5.18.3. RackEnv &lt;string&gt;</h4>
 <div class="paragraph"><p>The given value will be accessible in Rack applications in the <span class="monospaced">RACK_ENV</span>
 environment variable. This allows one to define the environment in which
 Rack applications are run, very similar to <span class="monospaced">RAILS_ENV</span>.</p></div>
@@ -4076,39 +4242,39 @@ In <em>.htaccess</em>, if <span class="monospaced">AllowOverride Options</span> 
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_deprecated_options" data-comment-topic="deprecated-options-pm9m57">5.19. Deprecated options</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_deprecated_options"></span><h3 data-comment-topic="deprecated-options-pm9m57" data-anchor="_deprecated_options">5.19. Deprecated options</h3>
 <div class="paragraph"><p>The following options have been deprecated, but are still supported for backwards
 compatibility reasons.</p></div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsruby" data-comment-topic="railsruby-ht09ei">5.19.1. RailsRuby</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsruby"></span><h4 data-comment-topic="railsruby-ht09ei" data-anchor="_railsruby">5.19.1. RailsRuby</h4>
 <div class="paragraph"><p>Deprecated in favor of <a href="#PassengerRuby">PassengerRuby</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsuserswitching" data-comment-topic="railsuserswitching-1npx8y4">5.19.2. RailsUserSwitching</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsuserswitching"></span><h4 data-comment-topic="railsuserswitching-1npx8y4" data-anchor="_railsuserswitching">5.19.2. RailsUserSwitching</h4>
 <div class="paragraph"><p>Deprecated in favor of <a href="#PassengerUserSwitching">PassengerUserSwitching</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsdefaultuser" data-comment-topic="railsdefaultuser-19j7n3m">5.19.3. RailsDefaultUser</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsdefaultuser"></span><h4 data-comment-topic="railsdefaultuser-19j7n3m" data-anchor="_railsdefaultuser">5.19.3. RailsDefaultUser</h4>
 <div class="paragraph"><p>Deprecated in favor of <a href="#PassengerDefaultUser">PassengerDefaultUser</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsallowmodrewrite" data-comment-topic="railsallowmodrewrite-1vkziro">5.19.4. RailsAllowModRewrite</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsallowmodrewrite"></span><h4 data-comment-topic="railsallowmodrewrite-1vkziro" data-anchor="_railsallowmodrewrite">5.19.4. RailsAllowModRewrite</h4>
 <div class="paragraph"><p>This option doesn’t do anything anymore in recent versions of Phusion Passenger.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_railsspawnmethod" data-comment-topic="railsspawnmethod-1aljgpa">5.19.5. RailsSpawnMethod</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_railsspawnmethod"></span><h4 data-comment-topic="railsspawnmethod-1aljgpa" data-anchor="_railsspawnmethod">5.19.5. RailsSpawnMethod</h4>
 <div class="paragraph"><p>Deprecated in favor of <a href="#PassengerSpawnMethod">PassengerSpawnMethod</a>.</p></div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_troubleshooting" data-comment-topic="troubleshooting-2ihihi">6. Troubleshooting</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_troubleshooting"></span><h2 data-comment-topic="troubleshooting-2ihihi" data-anchor="_troubleshooting">6. Troubleshooting</h2>
 <div class="sectionbody">
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_operating_system_specific_problems" data-comment-topic="operating-system-specific-problems-327gbk">6.1. Operating system-specific problems</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_operating_system_specific_problems"></span><h3 data-comment-topic="operating-system-specific-problems-327gbk" data-anchor="_operating_system_specific_problems">6.1. Operating system-specific problems</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_macos_x_the_installer_cannot_locate_mamp_8217_s_apache" data-comment-topic="macos-x-the-installer-cannot-locate-mamp-s-apache-or908n">6.1.1. MacOS X: The installer cannot locate MAMP’s Apache</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_macos_x_the_installer_cannot_locate_mamp_8217_s_apache"></span><h4 data-comment-topic="macos-x-the-installer-cannot-locate-mamp-s-apache-or908n" data-anchor="_macos_x_the_installer_cannot_locate_mamp_8217_s_apache">6.1.1. MacOS X: The installer cannot locate MAMP’s Apache</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Symptoms</div>
@@ -4129,9 +4295,9 @@ to fix this problem.</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_problems_during_installation" data-comment-topic="problems-during-installation-q1vlsu">6.2. Problems during installation</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_problems_during_installation"></span><h3 data-comment-topic="problems-during-installation-q1vlsu" data-anchor="_problems_during_installation">6.2. Problems during installation</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="installing_ruby_dev" data-comment-topic="ruby-development-headers-aren-t-installed-1yqrom8">6.2.1. Ruby development headers aren’t installed</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="installing_ruby_dev"></span><h4 data-comment-topic="ruby-development-headers-aren-t-installed-1yqrom8" data-anchor="installing_ruby_dev">6.2.1. Ruby development headers aren’t installed</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Symptoms</div>
@@ -4229,7 +4395,7 @@ which Ruby installation you want to use. Please read
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_apache_development_headers_aren_8217_t_installed" data-comment-topic="apache-development-headers-aren-t-installed-x2473y">6.2.2. Apache development headers aren’t installed</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_apache_development_headers_aren_8217_t_installed"></span><h4 data-comment-topic="apache-development-headers-aren-t-installed-x2473y" data-anchor="_apache_development_headers_aren_8217_t_installed">6.2.2. Apache development headers aren’t installed</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Symptoms</div>
@@ -4320,7 +4486,7 @@ Other operating systems
 </dl></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_apr_development_headers_aren_8217_t_installed" data-comment-topic="apr-development-headers-aren-t-installed-13bk976">6.2.3. APR development headers aren’t installed</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_apr_development_headers_aren_8217_t_installed"></span><h4 data-comment-topic="apr-development-headers-aren-t-installed-13bk976" data-anchor="_apr_development_headers_aren_8217_t_installed">6.2.3. APR development headers aren’t installed</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Symptoms</div>
@@ -4406,16 +4572,16 @@ Other operating systems
 </dl></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_phusion_passenger_is_using_the_wrong_apache_during_installation" data-comment-topic="phusion-passenger-is-using-the-wrong-apache-during-installation-82qnt4">6.2.4. Phusion Passenger is using the wrong Apache during installation</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_phusion_passenger_is_using_the_wrong_apache_during_installation"></span><h4 data-comment-topic="phusion-passenger-is-using-the-wrong-apache-during-installation-82qnt4" data-anchor="_phusion_passenger_is_using_the_wrong_apache_during_installation">6.2.4. Phusion Passenger is using the wrong Apache during installation</h4>
 <div class="paragraph"><p>Please <a href="#specifying_correct_apache_install">Specifying the correct Apache installation</a>, and re-run the Phusion Passenger installer.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_phusion_passenger_is_using_the_wrong_ruby_during_installation" data-comment-topic="phusion-passenger-is-using-the-wrong-ruby-during-installation-1nh3zml">6.2.5. Phusion Passenger is using the wrong Ruby during installation</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_phusion_passenger_is_using_the_wrong_ruby_during_installation"></span><h4 data-comment-topic="phusion-passenger-is-using-the-wrong-ruby-during-installation-1nh3zml" data-anchor="_phusion_passenger_is_using_the_wrong_ruby_during_installation">6.2.5. Phusion Passenger is using the wrong Ruby during installation</h4>
 <div class="paragraph"><p>Please <a href="#specifying_ruby_installation">Specifying the correct Ruby installation</a>, and re-run the Phusion Passenger installer.</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_problems_after_installation" data-comment-topic="problems-after-installation-fwd23q">6.3. Problems after installation</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_problems_after_installation"></span><h3 data-comment-topic="problems-after-installation-fwd23q" data-anchor="_problems_after_installation">6.3. Problems after installation</h3>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -4430,11 +4596,11 @@ inside the Apache error logs. It will tell you what exactly went wrong.</p></div
 </tr></table>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_my_rails_application_works_on_mongrel_but_not_on_phusion_passenger" data-comment-topic="my-rails-application-works-on-mongrel-but-not-on-phusion-passenger-1f28drx">6.3.1. My Rails application works on Mongrel, but not on Phusion Passenger</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_my_rails_application_works_on_mongrel_but_not_on_phusion_passenger"></span><h4 data-comment-topic="my-rails-application-works-on-mongrel-but-not-on-phusion-passenger-1f28drx" data-anchor="_my_rails_application_works_on_mongrel_but_not_on_phusion_passenger">6.3.1. My Rails application works on Mongrel, but not on Phusion Passenger</h4>
 <div class="paragraph"><p>Please try setting <a href="#PassengerSpawnMethod">PassengerSpawnMethod</a> to <em>conservative</em>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_phusion_passenger_has_been_compiled_against_the_wrong_apache_installation" data-comment-topic="phusion-passenger-has-been-compiled-against-the-wrong-apache-installation-n74ce0">6.3.2. Phusion Passenger has been compiled against the wrong Apache installation</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_phusion_passenger_has_been_compiled_against_the_wrong_apache_installation"></span><h4 data-comment-topic="phusion-passenger-has-been-compiled-against-the-wrong-apache-installation-n74ce0" data-anchor="_phusion_passenger_has_been_compiled_against_the_wrong_apache_installation">6.3.2. Phusion Passenger has been compiled against the wrong Apache installation</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Symptoms</div>
@@ -4447,11 +4613,11 @@ Apache installations on their system.</p></div>
 <div class="paragraph"><p>To solve this problem, please <a href="#specifying_correct_apache_install">specify the correct Apache installation</a>, and <a href="#install_passenger">reinstall Phusion Passenger</a>.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_i_get_a_403_forbidden_error" data-comment-topic="i-get-a-403-forbidden-error-m0rlay">6.3.3. I get a "403 Forbidden" error</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_i_get_a_403_forbidden_error"></span><h4 data-comment-topic="i-get-a-403-forbidden-error-m0rlay" data-anchor="_i_get_a_403_forbidden_error">6.3.3. I get a "403 Forbidden" error</h4>
 <div class="paragraph"><p>See next subsection.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_static_assets_such_as_images_and_stylesheets_aren_8217_t_being_displayed" data-comment-topic="static-assets-such-as-images-and-stylesheets-aren-t-being-displayed-uaptpi">6.3.4. Static assets such as images and stylesheets aren’t being displayed</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_static_assets_such_as_images_and_stylesheets_aren_8217_t_being_displayed"></span><h4 data-comment-topic="static-assets-such-as-images-and-stylesheets-aren-t-being-displayed-uaptpi" data-anchor="_static_assets_such_as_images_and_stylesheets_aren_8217_t_being_displayed">6.3.4. Static assets such as images and stylesheets aren’t being displayed</h4>
 <div class="paragraph"><p>Static assets are accelerated, i.e. they are served directly by Apache and do not
 go through the Rails stack. There are two reasons why Apache doesn’t serve static
 assets correctly:</p></div>
@@ -4484,7 +4650,7 @@ The Apache process doesn’t have permission to access your Rails application’
 </ol></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_the_apache_error_log_says_that_the_spawn_manager_script_does_not_exist_or_that_it_does_not_have_permission_to_execute_it" data-comment-topic="the-apache-error-log-says-that-the-spawn-manager-script-does-not-exist-or-that-it-does-not-have-permission-to-execute-it-1fmoozk">6.3.5. The Apache error log says that the spawn manager script does not exist, or that it does not have permission to execute it</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_the_apache_error_log_says_that_the_spawn_manager_script_does_not_exist_or_that_it_does_not_have_permission_to_execute_it"></span><h4 data-comment-topic="the-apache-error-log-says-that-the-spawn-manager-script-does-not-exist-or-that-it-does-not-have-permission-to-execute-it-1fmoozk" data-anchor="_the_apache_error_log_says_that_the_spawn_manager_script_does_not_exist_or_that_it_does_not_have_permission_to_execute_it">6.3.5. The Apache error log says that the spawn manager script does not exist, or that it does not have permission to execute it</h4>
 <div class="paragraph"><p>If you are sure that the <em>PassengerRoot</em> configuration option is set correctly,
 then this problem is most likely caused by the fact that you’re running Apache
 with SELinux. On Fedora, CentOS and RedHat Enterprise Linux, Apache is locked
@@ -4526,7 +4692,7 @@ If you’ve installed Phusion Passenger via the source tarball, then run the fol
 <div class="paragraph"><p>Once the permissions are fixed, restart Apache.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_the_rails_application_reports_that_it_8217_s_unable_to_start_because_of_a_permission_error" data-comment-topic="the-rails-application-reports-that-it-s-unable-to-start-because-of-a-permission-error-v53i6s">6.3.6. The Rails application reports that it’s unable to start because of a permission error</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_the_rails_application_reports_that_it_8217_s_unable_to_start_because_of_a_permission_error"></span><h4 data-comment-topic="the-rails-application-reports-that-it-s-unable-to-start-because-of-a-permission-error-v53i6s" data-anchor="_the_rails_application_reports_that_it_8217_s_unable_to_start_because_of_a_permission_error">6.3.6. The Rails application reports that it’s unable to start because of a permission error</h4>
 <div class="paragraph"><p>Please check whether your Rails application’s folder has the correct
 permissions. By default, Rails applications are started as the owner of the
 file <em>config/environment.rb</em>, except if the file is owned by root. If the
@@ -4536,7 +4702,7 @@ specified).</p></div>
 <div class="paragraph"><p>Please read <a href="#user_switching">User switching (security)</a> for details.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_my_rails_application_8217_s_log_file_is_not_being_written_to" data-comment-topic="my-rails-application-s-log-file-is-not-being-written-to-3i747l">6.3.7. My Rails application’s log file is not being written to</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_my_rails_application_8217_s_log_file_is_not_being_written_to"></span><h4 data-comment-topic="my-rails-application-s-log-file-is-not-being-written-to-3i747l" data-anchor="_my_rails_application_8217_s_log_file_is_not_being_written_to">6.3.7. My Rails application’s log file is not being written to</h4>
 <div class="paragraph"><p>There are a couple things that you should be aware of:</p></div>
 <div class="ulist"><ul>
 <li>
@@ -4567,7 +4733,7 @@ following command to give your Rails application folder that context:</p></div>
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_i_8217_ve_deployed_my_app_on_ssl_but_the_app_thinks_its_not_on_ssl" data-comment-topic="i-ve-deployed-my-app-on-ssl-but-the-app-thinks-its-not-on-ssl-10rvgnr">6.3.8. I’ve deployed my app on SSL, but the app thinks its not on SSL</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_i_8217_ve_deployed_my_app_on_ssl_but_the_app_thinks_its_not_on_ssl"></span><h4 data-comment-topic="i-ve-deployed-my-app-on-ssl-but-the-app-thinks-its-not-on-ssl-10rvgnr" data-anchor="_i_8217_ve_deployed_my_app_on_ssl_but_the_app_thinks_its_not_on_ssl">6.3.8. I’ve deployed my app on SSL, but the app thinks its not on SSL</h4>
 <div class="paragraph"><p>Rails and many other frameworks infers whether it’s running on SSL through the CGI
 environment variable <span class="monospaced">HTTPS</span>. Apache always sets this variable when on SSL,
 except when SSL is incorrectly configured.</p></div>
@@ -4608,30 +4774,30 @@ the corrected example:</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="conflicting_apache_modules" data-comment-topic="conflicting-apache-modules-1uwpixk">6.4. Conflicting Apache modules</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="conflicting_apache_modules"></span><h3 data-comment-topic="conflicting-apache-modules-1uwpixk" data-anchor="conflicting_apache_modules">6.4. Conflicting Apache modules</h3>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_mod_userdir" data-comment-topic="mod-userdir-x5e2te">6.4.1. mod_userdir</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_mod_userdir"></span><h4 data-comment-topic="mod-userdir-x5e2te" data-anchor="_mod_userdir">6.4.1. mod_userdir</h4>
 <div class="paragraph"><p><em>mod_userdir</em> is not compatible with Phusion Passenger at the moment.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_multiviews_mod_negotiation" data-comment-topic="multiviews-mod-negotiation--zchfg0">6.4.2. MultiViews (mod_negotiation)</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_multiviews_mod_negotiation"></span><h4 data-comment-topic="multiviews-mod-negotiation--zchfg0" data-anchor="_multiviews_mod_negotiation">6.4.2. MultiViews (mod_negotiation)</h4>
 <div class="paragraph"><p>MultiViews is not compatible with Phusion Passenger. You should disable MultiViews
 for all Phusion Passenger hosts.</p></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_virtualdocumentroot" data-comment-topic="virtualdocumentroot-14cwd7l">6.4.3. VirtualDocumentRoot</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_virtualdocumentroot"></span><h4 data-comment-topic="virtualdocumentroot-14cwd7l" data-anchor="_virtualdocumentroot">6.4.3. VirtualDocumentRoot</h4>
 <div class="paragraph"><p>VirtualDocumentRoot is not compatible with Phusion Passenger at the moment.</p></div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_analysis_and_system_maintenance" data-comment-topic="analysis-and-system-maintenance-qvkwzr">7. Analysis and system maintenance</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_analysis_and_system_maintenance"></span><h2 data-comment-topic="analysis-and-system-maintenance-qvkwzr" data-anchor="_analysis_and_system_maintenance">7. Analysis and system maintenance</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Phusion Passenger provides a set of tools, which are useful for system analysis,
 maintenance and troubleshooting.</p></div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_inspecting_memory_usage" data-comment-topic="inspecting-memory-usage-1bkis6i">7.1. Inspecting memory usage</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_inspecting_memory_usage"></span><h3 data-comment-topic="inspecting-memory-usage-1bkis6i" data-anchor="_inspecting_memory_usage">7.1. Inspecting memory usage</h3>
 <div class="paragraph"><p>Process inspection tools such as <span class="monospaced">ps</span> and <span class="monospaced">top</span> are useful, but they
 <a href="http://groups.google.com/group/phusion-passenger/msg/1fd1c233456d3180">rarely show the correct memory usage</a>.
 The real memory usage is usually lower than what <span class="monospaced">ps</span> and <span class="monospaced">top</span> report.</p></div>
@@ -4684,7 +4850,7 @@ the Resident Set Size is reported instead.</td>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_inspecting_phusion_passenger_8217_s_internal_status" data-comment-topic="inspecting-phusion-passenger-s-internal-status-ukekf7">7.2. Inspecting Phusion Passenger’s internal status</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_inspecting_phusion_passenger_8217_s_internal_status"></span><h3 data-comment-topic="inspecting-phusion-passenger-s-internal-status-ukekf7" data-anchor="_inspecting_phusion_passenger_8217_s_internal_status">7.2. Inspecting Phusion Passenger’s internal status</h3>
 <div class="paragraph"><p>One can inspect Phusion Passenger’s internal status with the tool <span class="monospaced">passenger-status</span>.
 This tool must typically be run as root. For example:</p></div>
 <div class="listingblock">
@@ -4816,7 +4982,7 @@ Your application is frozen, i.e. has stopped responding. See
 </ol></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="debugging_frozen" data-comment-topic="debugging-frozen-applications-1qsjqq7">7.3. Debugging frozen applications</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="debugging_frozen"></span><h3 data-comment-topic="debugging-frozen-applications-1qsjqq7" data-anchor="debugging_frozen">7.3. Debugging frozen applications</h3>
 <div class="paragraph"><p>If one of your application instances is frozen (stopped responding), then you
 can figure out where it is frozen by killing it with <em>SIGABRT</em>. This will cause the
 application to raise an exception, with a backtrace.</p></div>
@@ -4838,7 +5004,7 @@ will restart killed application instances, as if nothing bad happened.</td>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_accessing_individual_application_processes" data-comment-topic="accessing-individual-application-processes-1p0j4jb">7.4. Accessing individual application processes</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_accessing_individual_application_processes"></span><h3 data-comment-topic="accessing-individual-application-processes-1p0j4jb" data-anchor="_accessing_individual_application_processes">7.4. Accessing individual application processes</h3>
 <div class="paragraph"><p>When a request is sent to the web server, Phusion Passenger will automatically forward
 the request to the most suitable application process, but sometimes it is desirable to
 be able to directly access the individual application processes. Use cases include, but
@@ -4904,17 +5070,17 @@ through the <em>X-Passenger-Connect-Password</em> HTTP header, like this:</p></d
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_attaching_an_irb_console_to_an_application_process" data-comment-topic="attaching-an-irb-console-to-an-application-process-1cma32j">7.5. Attaching an IRB console to an application process</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_attaching_an_irb_console_to_an_application_process"></span><h3 data-comment-topic="attaching-an-irb-console-to-an-application-process-1cma32j" data-anchor="_attaching_an_irb_console_to_an_application_process">7.5. Attaching an IRB console to an application process</h3>
 <div class="paragraph"><p><strong>Available in Phusion Passenger Enterprise since version 3.0.0.</strong></p></div>
 <div class="paragraph"><p>You can attach an IRB console to any application process and inspect its state by executing arbitrary Ruby code. Do this by invoking <span class="monospaced">passenger-irb &lt;PID&gt;</span> where <em>&lt;PID&gt;</em> is the PID of the application process you wish to inspect. Note that the IRB console is currently only available for Ruby apps, not for apps in any other languages.</p></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_tips" data-comment-topic="tips-19cwwf7">8. Tips</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_tips"></span><h2 data-comment-topic="tips-19cwwf7" data-anchor="_tips">8. Tips</h2>
 <div class="sectionbody">
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="user_switching" data-comment-topic="user-switching-security--8njx1x">8.1. User switching (security)</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="user_switching"></span><h3 data-comment-topic="user-switching-security--8njx1x" data-anchor="user_switching">8.1. User switching (security)</h3>
 <div class="paragraph"><p>There is a problem that plagues most PHP web hosts, namely the fact that all PHP
 applications are run in the same user context as the web server. So for
 example, Joe’s PHP application will be able to read Jane’s PHP application’s
@@ -4954,14 +5120,14 @@ Under no circumstances will applications be run as <em>root</em>. If
 option.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="reducing_memory_usage" data-comment-topic="reducing-memory-consumption-of-ruby-on-rails-applications-by-33--1ubxnq0">8.2. Reducing memory consumption of Ruby on Rails applications by 33%</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="reducing_memory_usage"></span><h3 data-comment-topic="reducing-memory-consumption-of-ruby-on-rails-applications-by-33--1ubxnq0" data-anchor="reducing_memory_usage">8.2. Reducing memory consumption of Ruby on Rails applications by 33%</h3>
 <div class="paragraph"><p>Is it possible to reduce memory consumption of your Rails applications by 33% on average,
 by using <a href="http://www.rubyenterpriseedition.com/">Ruby Enterprise Edition</a>.
 Please visit the website for details.</p></div>
 <div class="paragraph"><p>Note that this feature does not apply to Rack applications.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="capistrano" data-comment-topic="capistrano-recipe-syzgo7">8.3. Capistrano recipe</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="capistrano"></span><h3 data-comment-topic="capistrano-recipe-syzgo7" data-anchor="capistrano">8.3. Capistrano recipe</h3>
 <div class="paragraph"><p>Phusion Passenger can be combined with <a href="http://capify.org/">Capistrano</a>.
 The following Capistrano recipe demonstrates Phusion Passenger support.
 It assumes that you’re using Git as version control system.</p></div>
@@ -4996,7 +5162,7 @@ end</pre>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="bundler_support" data-comment-topic="bundler-support-cf72ih">8.4. Bundler support</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="bundler_support"></span><h3 data-comment-topic="bundler-support-cf72ih" data-anchor="bundler_support">8.4. Bundler support</h3>
 <div class="paragraph"><p>Phusion Passenger has automatic support for <a href="http://gembundler.com/git.html">Bundler</a>.
 It works as follows:</p></div>
 <div class="ulist"><ul>
@@ -5029,7 +5195,7 @@ the application startup file. In this file you can do whatever you need to setup
 or a similar system.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="moving_phusion_passenger" data-comment-topic="moving-phusion-passenger-to-a-different-directory-16fapwo">8.5. Moving Phusion Passenger to a different directory</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="moving_phusion_passenger"></span><h3 data-comment-topic="moving-phusion-passenger-to-a-different-directory-16fapwo" data-anchor="moving_phusion_passenger">8.5. Moving Phusion Passenger to a different directory</h3>
 <div class="paragraph"><p>It is possible to relocate the Phusion Passenger files to a different directory. It
 involves two steps:</p></div>
 <div class="olist arabic"><ol class="arabic">
@@ -5070,7 +5236,7 @@ Edit your Apache configuration file, and set:
 </ol></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_installing_multiple_ruby_on_rails_versions" data-comment-topic="installing-multiple-ruby-on-rails-versions-mi5j14">8.6. Installing multiple Ruby on Rails versions</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_installing_multiple_ruby_on_rails_versions"></span><h3 data-comment-topic="installing-multiple-ruby-on-rails-versions-mi5j14" data-anchor="_installing_multiple_ruby_on_rails_versions">8.6. Installing multiple Ruby on Rails versions</h3>
 <div class="paragraph"><p>Each Ruby on Rails applications that are going to be deployed may require a
 specific Ruby on Rails version. You can install a specific version with
 this command:</p></div>
@@ -5084,7 +5250,7 @@ this command:</p></div>
 other. Phusion Passenger will automatically make use of the correct version.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_making_the_application_restart_after_each_request" data-comment-topic="making-the-application-restart-after-each-request-183bezx">8.7. Making the application restart after each request</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_making_the_application_restart_after_each_request"></span><h3 data-comment-topic="making-the-application-restart-after-each-request-183bezx" data-anchor="_making_the_application_restart_after_each_request">8.7. Making the application restart after each request</h3>
 <div class="paragraph"><p>In some situations it might be desirable to restart the web application after
 each request, for example when developing a non-Rails application that doesn’t
 support code reloading, or when developing a web framework.</p></div>
@@ -5107,7 +5273,7 @@ does not support code reloading.</td>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="sub_uri_deployment_uri_fix" data-comment-topic="how-to-fix-broken-images-css-javascript-uris-in-sub-uri-deployments-a63b6r">8.8. How to fix broken images/CSS/JavaScript URIs in sub-URI deployments</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="sub_uri_deployment_uri_fix"></span><h3 data-comment-topic="how-to-fix-broken-images-css-javascript-uris-in-sub-uri-deployments-a63b6r" data-anchor="sub_uri_deployment_uri_fix">8.8. How to fix broken images/CSS/JavaScript URIs in sub-URI deployments</h3>
 <div class="paragraph"><p>Some people experience broken images and other broken static assets when they
 deploy their application to a sub-URI (i.e. <em>http://mysite.com/railsapp/</em>).
 The reason for this usually is that you used a
@@ -5145,12 +5311,12 @@ please refer to
 <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html">the Rails API docs</a>.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_x_sendfile_support" data-comment-topic="x-sendfile-support-1cgyykw">8.9. X-Sendfile support</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_x_sendfile_support"></span><h3 data-comment-topic="x-sendfile-support-1cgyykw" data-anchor="_x_sendfile_support">8.9. X-Sendfile support</h3>
 <div class="paragraph"><p>Phusion Passenger does not provide X-Sendfile support by itself. Please install
 <a href="http://tn123.ath.cx/mod_xsendfile/">mod_xsendfile</a> for X-Sendfile support.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_upload_progress" data-comment-topic="upload-progress-71cyl7">8.10. Upload progress</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_upload_progress"></span><h3 data-comment-topic="upload-progress-71cyl7" data-anchor="_upload_progress">8.10. Upload progress</h3>
 <div class="paragraph"><p>Phusion Passenger does not provide upload progress support by itself. Please
 try drogus’s <a href="http://github.com/drogus/apache-upload-progress-module/tree/master">
 Apache upload progress module</a> instead.</p></div>
@@ -5158,13 +5324,13 @@ Apache upload progress module</a> instead.</p></div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_under_the_hood" data-comment-topic="under-the-hood-21ue5t">9. Under the hood</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_under_the_hood"></span><h2 data-comment-topic="under-the-hood-21ue5t" data-anchor="_under_the_hood">9. Under the hood</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Phusion Passenger hides a lot of complexity for the end user (i.e. the web server
 system administrator), but sometimes it is desirable to know what is going on.
 This section describes a few things that Phusion Passenger does under the hood.</p></div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_static_assets_serving" data-comment-topic="static-assets-serving-wo2d9v">9.1. Static assets serving</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_static_assets_serving"></span><h3 data-comment-topic="static-assets-serving-wo2d9v" data-anchor="_static_assets_serving">9.1. Static assets serving</h3>
 <div class="paragraph"><p>Phusion Passenger accelerates serving of static files. This means that, if an URI
 maps to a file that exists, then Phusion Passenger will let Apache serve that file
 directly, without hitting the web application.</p></div>
@@ -5184,7 +5350,7 @@ RewriteRule ^(.*)$ balancer://mongrel%{REQUEST_URI} [P,QSA,L]</pre>
 them.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_page_caching_support" data-comment-topic="page-caching-support-kwq9b9">9.2. Page caching support</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_page_caching_support"></span><h3 data-comment-topic="page-caching-support-kwq9b9" data-anchor="_page_caching_support">9.2. Page caching support</h3>
 <div class="paragraph"><p>For each HTTP request, Phusion Passenger will automatically look for a corresponding
 page cache file, and serve that if it exists. It does this by appending ".html" to
 the filename that the URI normally maps to, and checking whether that file exists.
@@ -5220,7 +5386,7 @@ the <em>public</em> directory. In that case you’ll need to use mod_rewrite to 
 page cache files.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="application_detection" data-comment-topic="how-phusion-passenger-detects-whether-a-virtual-host-is-a-web-application-179mp8m">9.3. How Phusion Passenger detects whether a virtual host is a web application</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="application_detection"></span><h3 data-comment-topic="how-phusion-passenger-detects-whether-a-virtual-host-is-a-web-application-179mp8m" data-anchor="application_detection">9.3. How Phusion Passenger detects whether a virtual host is a web application</h3>
 <div class="paragraph"><p>After you’ve read the deployment instructions you might wonder how Phusion Passenger
 knows that the DocumentRoot points to a web application that Phusion Passenger is
 able to serve, and how it knows what kind of web application it is (e.g. Rails or Rack).</p></div>
@@ -5269,28 +5435,30 @@ Phusion Passenger will look for <em>config.ru</em> instead of <em>config/environ
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_appendix_a_about_this_document" data-comment-topic="appendix-a-about-this-document-103toqs">10. Appendix A: About this document</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_appendix_a_about_this_document"></span><h2 data-comment-topic="appendix-a-about-this-document-103toqs" data-anchor="_appendix_a_about_this_document">10. Appendix A: About this document</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The text of this document is licensed under the
 <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons
 Attribution-Share Alike 3.0 Unported License</a>.</p></div>
 <div class="paragraph"><p><span class="image">
 <a class="image" href="http://creativecommons.org/licenses/by-sa/3.0/">
-<img src="images/by_sa.png" alt="images/by_sa.png"></a>
+<img src="images/by_sa.png" alt="images/by_sa.png">
+</a>
 </span></p></div>
 <div class="paragraph"><p>Phusion Passenger is brought to you by <a href="http://www.phusion.nl/">Phusion</a>.</p></div>
 <div class="paragraph"><p><span class="image">
 <a class="image" href="http://www.phusion.nl/">
-<img src="images/phusion_banner.png" alt="images/phusion_banner.png"></a>
+<img src="images/phusion_banner.png" alt="images/phusion_banner.png">
+</a>
 </span></p></div>
 <div class="paragraph"><p>Phusion Passenger is a trademark of Hongli Lai &amp; Ninh Bui.</p></div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="_appendix_b_terminology" data-comment-topic="appendix-b-terminology-h4eaf4">11. Appendix B: Terminology</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_appendix_b_terminology"></span><h2 data-comment-topic="appendix-b-terminology-h4eaf4" data-anchor="_appendix_b_terminology">11. Appendix B: Terminology</h2>
 <div class="sectionbody">
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="application_root" data-comment-topic="application-root-otx6xf">11.1. Application root</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="application_root"></span><h3 data-comment-topic="application-root-otx6xf" data-anchor="application_root">11.1. Application root</h3>
 <div class="paragraph"><p>The root directory of an application that’s served by Phusion Passenger.</p></div>
 <div class="paragraph"><p>In case of Ruby on Rails applications, this is the directory that contains
 <em>Rakefile</em>, <em>app/</em>, <em>config/</em>, <em>public/</em>, etc. In other words, the directory
@@ -5352,17 +5520,17 @@ For example, take the following directory structure:</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="idle_process" data-comment-topic="idle-process-potb6g">11.2. Idle process</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="idle_process"></span><h3 data-comment-topic="idle-process-potb6g" data-anchor="idle_process">11.2. Idle process</h3>
 <div class="paragraph"><p>An "idle process" refers to a process that hasn’t processed any requests for a while.</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="inactive_process" data-comment-topic="inactive-process-16gjv2e">11.3. Inactive process</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="inactive_process"></span><h3 data-comment-topic="inactive-process-16gjv2e" data-anchor="inactive_process">11.3. Inactive process</h3>
 <div class="paragraph"><p>An "inactive process" refers to a process that’s current not processing any requests. An idle process is always inactive, but an inactive process is not always considered idle.</p></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h2 id="spawning_methods_explained" data-comment-topic="appendix-c-spawning-methods-explained-owghi9">12. Appendix C: Spawning methods explained</h2>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="spawning_methods_explained"></span><h2 data-comment-topic="appendix-c-spawning-methods-explained-owghi9" data-anchor="spawning_methods_explained">12. Appendix C: Spawning methods explained</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>At its core, Phusion Passenger is an HTTP proxy and process manager. It spawns
 Ruby on Rails/Rack/WSGI worker processes (which may also be referred to as
@@ -5372,7 +5540,7 @@ processes.</p></div>
 Let’s go over the different spawning methods. For simplicity’s sake, let’s
 assume that we’re only talking about Ruby on Rails applications.</p></div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_the_most_straightforward_and_traditional_way_conservative_spawning" data-comment-topic="the-most-straightforward-and-traditional-way-conservative-spawning-1ybbli2">12.1. The most straightforward and traditional way: conservative spawning</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_the_most_straightforward_and_traditional_way_conservative_spawning"></span><h3 data-comment-topic="the-most-straightforward-and-traditional-way-conservative-spawning-1ybbli2" data-anchor="_the_most_straightforward_and_traditional_way_conservative_spawning">12.1. The most straightforward and traditional way: conservative spawning</h3>
 <div class="paragraph"><p>Phusion Passenger could create a new Ruby process, which will then load the
 Rails application along with the entire Rails framework. This process will then
 enter an request handling main loop.</p></div>
@@ -5389,7 +5557,7 @@ other hand creates processes that reuse the already loaded Ruby interpreter. In
 programmers jargon, Phusion Passenger calls fork(), but not exec().</p></div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_the_smart_spawning_method" data-comment-topic="the-smart-spawning-method-1cvu9dd">12.2. The smart spawning method</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_the_smart_spawning_method"></span><h3 data-comment-topic="the-smart-spawning-method-1cvu9dd" data-anchor="_the_smart_spawning_method">12.2. The smart spawning method</h3>
 <div class="admonitionblock">
 <table><tr>
 <td class="icon">
@@ -5402,7 +5570,9 @@ programmers jargon, Phusion Passenger calls fork(), but not exec().</p></div>
 because each worker process has its own private copy of the Rails application
 as well as the Rails framework. This wastes memory as well as startup time.</p></div>
 <div class="paragraph"><p><span class="image">
-<img src="images/conservative_spawning.png" alt="Worker processes and conservative spawning"></span><br><em>Figure: Worker processes and conservative spawning. Each worker process has its
+<img src="images/conservative_spawning.png" alt="Worker processes and conservative spawning">
+</span><br>
+<em>Figure: Worker processes and conservative spawning. Each worker process has its
 own private copy of the application code and Rails framework code.</em></p></div>
 <div class="paragraph"><p>It is possible to make the different worker processes share the memory occupied
 by application and Rails framework code, by utilizing so-called
@@ -5410,7 +5580,7 @@ copy-on-write semantics of the virtual memory system on modern operating
 systems. As a side effect, the startup time is also reduced. This is technique
 is exploited by Phusion Passenger’s <em>smart</em> and <em>smart-lv2</em> spawn methods.</p></div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_how_it_works" data-comment-topic="how-it-works-672zja">12.2.1. How it works</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_how_it_works"></span><h4 data-comment-topic="how-it-works-672zja" data-anchor="_how_it_works">12.2.1. How it works</h4>
 <div class="paragraph"><p>When the <em>smart-lv2</em> spawn method is being used, Phusion Passenger will first
 create a so-called <em>ApplicationSpawner server</em> process. This process loads the
 entire Rails application along with the Rails framework, by loading
@@ -5426,7 +5596,9 @@ processes will share as much common
 memory as possible. That is, they will all share the same application and Rails
 framework code.</p></div>
 <div class="paragraph"><p><span class="image">
-<img src="images/smart-lv2.png" alt="images/smart-lv2.png"></span><br><em>Figure: Worker processes and the smart-lv2 spawn method. All worker processes,
+<img src="images/smart-lv2.png" alt="images/smart-lv2.png">
+</span><br>
+<em>Figure: Worker processes and the smart-lv2 spawn method. All worker processes,
 as well as the ApplicationSpawner, share the same application code and Rails
 framework code.</em></p></div>
 <div class="paragraph"><p>The <em>smart</em> spawn method goes even further, by caching the Rails framework in
@@ -5460,7 +5632,7 @@ ApplicationSpawner and FrameworkSpawner servers have an idle timeout just
 </ul></div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_summary_of_benefits" data-comment-topic="summary-of-benefits-1yrihfb">12.2.2. Summary of benefits</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_summary_of_benefits"></span><h4 data-comment-topic="summary-of-benefits-1yrihfb" data-anchor="_summary_of_benefits">12.2.2. Summary of benefits</h4>
 <div class="paragraph"><p>Suppose that Phusion Passenger needs a new worker process for an application
 that uses Rails 2.2.1.</p></div>
 <div class="ulist"><ul>
@@ -5497,7 +5669,7 @@ gotchas you can easily reap the benefits of smart spawning.</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_smart_spawning_gotcha_1_unintentional_file_descriptor_sharing" data-comment-topic="smart-spawning-gotcha-1-unintentional-file-descriptor-sharing-z1y55l">12.3. Smart spawning gotcha #1: unintentional file descriptor sharing</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_smart_spawning_gotcha_1_unintentional_file_descriptor_sharing"></span><h3 data-comment-topic="smart-spawning-gotcha-1-unintentional-file-descriptor-sharing-z1y55l" data-anchor="_smart_spawning_gotcha_1_unintentional_file_descriptor_sharing">12.3. Smart spawning gotcha #1: unintentional file descriptor sharing</h3>
 <div class="paragraph"><p>Because worker processes are created by forking from an ApplicationSpawner
 server, it will share all file descriptors that are opened by the
 ApplicationSpawner server. (This is part of the semantics of the Unix
@@ -5533,7 +5705,7 @@ http://www.gnu.org/software/src-highlite -->
 database upon creating a new worker process, which is why you normally do not
 encounter any database issues when using smart spawning mode.</p></div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_example_1_memcached_connection_sharing_harmful" data-comment-topic="example-1-memcached-connection-sharing-harmful--c71wqw">12.3.1. Example 1: Memcached connection sharing (harmful)</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_example_1_memcached_connection_sharing_harmful"></span><h4 data-comment-topic="example-1-memcached-connection-sharing-harmful--c71wqw" data-anchor="_example_1_memcached_connection_sharing_harmful">12.3.1. Example 1: Memcached connection sharing (harmful)</h4>
 <div class="paragraph"><p>Suppose we have a Rails application that connects to a Memcached server in
 <em>environment.rb</em>. This causes the ApplicationSpawner to have a socket connection
 (file descriptor) to the Memcached server, as shown in the following figure:</p></div>
@@ -5632,7 +5804,7 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 </div>
 <div class="sect3">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h4 id="_example_2_log_file_sharing_not_harmful" data-comment-topic="example-2-log-file-sharing-not-harmful--1p2yuol">12.3.2. Example 2: Log file sharing (not harmful)</h4>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_example_2_log_file_sharing_not_harmful"></span><h4 data-comment-topic="example-2-log-file-sharing-not-harmful--1p2yuol" data-anchor="_example_2_log_file_sharing_not_harmful">12.3.2. Example 2: Log file sharing (not harmful)</h4>
 <div class="paragraph"><p>There are also cases in which unintentional file descriptor sharing is not harmful.
 One such case is log file file descriptor sharing. Even if two processes write
 to the log file at the same time, the worst thing that can happen is that the
@@ -5644,7 +5816,7 @@ Memcached example, doesn’t help.</p></div>
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_smart_spawning_gotcha_2_the_need_to_revive_threads" data-comment-topic="smart-spawning-gotcha-2-the-need-to-revive-threads-1k6cj7d">12.4. Smart spawning gotcha #2: the need to revive threads</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_smart_spawning_gotcha_2_the_need_to_revive_threads"></span><h3 data-comment-topic="smart-spawning-gotcha-2-the-need-to-revive-threads-1k6cj7d" data-anchor="_smart_spawning_gotcha_2_the_need_to_revive_threads">12.4. Smart spawning gotcha #2: the need to revive threads</h3>
 <div class="paragraph"><p>Another part of the <em>fork()</em> system call’s semantics is the fact that threads
 disappear after a fork call. So if you’ve created any threads in environment.rb,
 then those threads will no longer be running in newly created worker process.
@@ -5670,7 +5842,7 @@ http://www.gnu.org/software/src-highlite -->
 </div>
 </div>
 <div class="sect2">
-<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><h3 id="_smart_spawning_gotcha_3_code_load_order" data-comment-topic="smart-spawning-gotcha-3-code-load-order-nkotiy">12.5. Smart spawning gotcha #3: code load order</h3>
+<a href="javascript:void(0)" class="comments empty" title="Add a comment"><span class="count"></span></a><span class="anchor_helper" id="_smart_spawning_gotcha_3_code_load_order"></span><h3 data-comment-topic="smart-spawning-gotcha-3-code-load-order-nkotiy" data-anchor="_smart_spawning_gotcha_3_code_load_order">12.5. Smart spawning gotcha #3: code load order</h3>
 <div class="paragraph"><p>This gotcha is only applicable to the <em>smart</em> spawn method, not the <em>smart-lv2</em>
 spawn method.</p></div>
 <div class="paragraph"><p>If your application expects the Rails framework to be not loaded during the
@@ -5692,9 +5864,7 @@ has no effect.</p></div>
 </div>
 <div id="footnotes"><hr></div>
 <div id="footer">
-<div id="footer-text">
-Last updated 2013-01-08 23:47:06 CET
-</div>
+
 </div>
 <script>/*! jQuery v1.7.1 jquery.com | jquery.org/license */
 (function(a,b){function cy(a){return f.isWindow(a)?a:a.nodeType===9?a.defaultView||a.parentWindow:!1}function cv(a){if(!ck[a]){var b=c.body,d=f("<"+a+">").appendTo(b),e=d.css("display");d.remove();if(e==="none"||e===""){cl||(cl=c.createElement("iframe"),cl.frameBorder=cl.width=cl.height=0),b.appendChild(cl);if(!cm||!cl.createElement)cm=(cl.contentWindow||cl.contentDocument).document,cm.write((c.compatMode==="CSS1Compat"?"<!doctype html>":"")+"<html><body>"),cm.close();d=cm.createElement(a),cm.body.appendChild(d),e=f.css(d,"display"),b.removeChild(cl)}ck[a]=e}return ck[a]}function cu(a,b){var c={};f.each(cq.concat.apply([],cq.slice(0,b)),function(){c[this]=a});return c}function ct(){cr=b}function cs(){setTimeout(ct,0);return cr=f.now()}function cj(){try{return new a.ActiveXObject("Microsoft.XMLHTTP")}catch(b){}}function ci(){try{return new a.XMLHttpRequest}catch(b){}}function cc(a,c){a.dataFilter&&(c=a.dataFilter(c,a.dataType));var d=a.dataTypes,e={},g,h,i=d.length,j,k=d[0],l,m,n,o,p;for(g=1;g<i;g++){if(g===1)for(h in a.converters)typeof h=="string"&&(e[h.toLowerCase()]=a.converters[h]);l=k,k=d[g];if(k==="*")k=l;else if(l!=="*"&&l!==k){m=l+" "+k,n=e[m]||e["* "+k];if(!n){p=b;for(o in e){j=o.split(" ");if(j[0]===l||j[0]==="*"){p=e[j[1]+" "+k];if(p){o=e[o],o===!0?n=p:p===!0&&(n=o);break}}}}!n&&!p&&f.error("No conversion from "+m.replace(" "," to ")),n!==!0&&(c=n?n(c):p(o(c)))}}return c}function cb(a,c,d){var e=a.contents,f=a.dataTypes,g=a.responseFields,h,i,j,k;for(i in g)i in d&&(c[g[i]]=d[i]);while(f[0]==="*")f.shift(),h===b&&(h=a.mimeType||c.getResponseHeader("content-type"));if(h)for(i in e)if(e[i]&&e[i].test(h)){f.unshift(i);break}if(f[0]in d)j=f[0];else{for(i in d){if(!f[0]||a.converters[i+" "+f[0]]){j=i;break}k||(k=i)}j=j||k}if(j){j!==f[0]&&f.unshift(j);return d[j]}}function ca(a,b,c,d){if(f.isArray(b))f.each(b,function(b,e){c||bE.test(a)?d(a,e):ca(a+"["+(typeof e=="object"||f.isArray(e)?b:"")+"]",e,c,d)});else if(!c&&b!=null&&typeof b=="object")for(var e in b)ca(a+"["+e+"]",b[e],c,d);else d(a,b)}function b_(a,c){var d,e,g=f.ajaxSettings.flatOptions||{};for(d in c)c[d]!==b&&((g[d]?a:e||(e={}))[d]=c[d]);e&&f.extend(!0,a,e)}function b$(a,c,d,e,f,g){f=f||c.dataTypes[0],g=g||{},g[f]=!0;var h=a[f],i=0,j=h?h.length:0,k=a===bT,l;for(;i<j&&(k||!l);i++)l=h[i](c,d,e),typeof l=="string"&&(!k||g[l]?l=b:(c.dataTypes.unshift(l),l=b$(a,c,d,e,l,g)));(k||!l)&&!g["*"]&&(l=b$(a,c,d,e,"*",g));return l}function bZ(a){return function(b,c){typeof b!="string"&&(c=b,b="*");if(f.isFunction(c)){var d=b.toLowerCase().split(bP),e=0,g=d.length,h,i,j;for(;e<g;e++)h=d[e],j=/^\+/.test(h),j&&(h=h.substr(1)||"*"),i=a[h]=a[h]||[],i[j?"unshift":"push"](c)}}}function bC(a,b,c){var d=b==="width"?a.offsetWidth:a.offsetHeight,e=b==="width"?bx:by,g=0,h=e.length;if(d>0){if(c!=="border")for(;g<h;g++)c||(d-=parseFloat(f.css(a,"padding"+e[g]))||0),c==="margin"?d+=parseFloat(f.css(a,c+e[g]))||0:d-=parseFloat(f.css(a,"border"+e[g]+"Width"))||0;return d+"px"}d=bz(a,b,b);if(d<0||d==null)d=a.style[b]||0;d=parseFloat(d)||0;if(c)for(;g<h;g++)d+=parseFloat(f.css(a,"padding"+e[g]))||0,c!=="padding"&&(d+=parseFloat(f.css(a,"border"+e[g]+"Width"))||0),c==="margin"&&(d+=parseFloat(f.css(a,c+e[g]))||0);return d+"px"}function bp(a,b){b.src?f.ajax({url:b.src,async:!1,dataType:"script"}):f.globalEval((b.text||b.textContent||b.innerHTML||"").replace(bf,"/*$0*/")),b.parentNode&&b.parentNode.removeChild(b)}function bo(a){var b=c.createElement("div");bh.appendChild(b),b.innerHTML=a.outerHTML;return b.firstChild}function bn(a){var b=(a.nodeName||"").toLowerCase();b==="input"?bm(a):b!=="script"&&typeof a.getElementsByTagName!="undefined"&&f.grep(a.getElementsByTagName("input"),bm)}function bm(a){if(a.type==="checkbox"||a.type==="radio")a.defaultChecked=a.checked}function bl(a){return typeof a.getElementsByTagName!="undefined"?a.getElementsByTagName("*"):typeof a.querySelectorAll!="undefined"?a.querySelectorAll("*"):[]}function bk(a,b){var c;if(b.nodeType===1){b.clearAttributes&&b.clearAttributes(),b.mergeAttributes&&b.mergeAttributes(a),c=b.nodeName.toLowerCase();if(c==="object")b.outerHTML=a.outerHTML;else if(c!=="input"||a.type!=="checkbox"&&a.type!=="radio"){if(c==="option")b.selected=a.defaultSelected;else if(c==="input"||c==="textarea")b.defaultValue=a.defaultValue}else a.checked&&(b.defaultChecked=b.checked=a.checked),b.value!==a.value&&(b.value=a.value);b.removeAttribute(f.expando)}}function bj(a,b){if(b.nodeType===1&&!!f.hasData(a)){var c,d,e,g=f._data(a),h=f._data(b,g),i=g.events;if(i){delete h.handle,h.events={};for(c in i)for(d=0,e=i[c].length;d<e;d++)f.event.add(b,c+(i[c][d].namespace?".":"")+i[c][d].namespace,i[c][d],i[c][d].data)}h.data&&(h.data=f.extend({},h.data))}}function bi(a,b){return f.nodeName(a,"table")?a.getElementsByTagName("tbody")[0]||a.appendChild(a.ownerDocument.createElement("tbody")):a}function U(a){var b=V.split("|"),c=a.createDocumentFragment();if(c.createElement)while(b.length)c.createElement(b.pop());return c}function T(a,b,c){b=b||0;if(f.isFunction(b))return f.grep(a,function(a,d){var e=!!b.call(a,d,a);return e===c});if(b.nodeType)return f.grep(a,function(a,d){return a===b===c});if(typeof b=="string"){var d=f.grep(a,function(a){return a.nodeType===1});if(O.test(b))return f.filter(b,d,!c);b=f.filter(b,d)}return f.grep(a,function(a,d){return f.inArray(a,b)>=0===c})}function S(a){return!a||!a.parentNode||a.parentNode.nodeType===11}function K(){return!0}function J(){return!1}function n(a,b,c){var d=b+"defer",e=b+"queue",g=b+"mark",h=f._data(a,d);h&&(c==="queue"||!f._data(a,e))&&(c==="mark"||!f._data(a,g))&&setTimeout(function(){!f._data(a,e)&&!f._data(a,g)&&(f.removeData(a,d,!0),h.fire())},0)}function m(a){for(var b in a){if(b==="data"&&f.isEmptyObject(a[b]))continue;if(b!=="toJSON")return!1}return!0}function l(a,c,d){if(d===b&&a.nodeType===1){var e="data-"+c.replace(k,"-$1").toLowerCase();d=a.getAttribute(e);if(typeof d=="string"){try{d=d==="true"?!0:d==="false"?!1:d==="null"?null:f.isNumeric(d)?parseFloat(d):j.test(d)?f.parseJSON(d):d}catch(g){}f.data(a,c,d)}else d=b}return d}function h(a){var b=g[a]={},c,d;a=a.split(/\s+/);for(c=0,d=a.length;c<d;c++)b[a[c]]=!0;return b}var c=a.document,d=a.navigator,e=a.location,f=function(){function J(){if(!e.isReady){try{c.documentElement.doScroll("left")}catch(a){setTimeout(J,1);return}e.ready()}}var e=function(a,b){return new e.fn.init(a,b,h)},f=a.jQuery,g=a.$,h,i=/^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,j=/\S/,k=/^\s+/,l=/\s+$/,m=/^<(\w+)\s*\/?>(?:<\/\1>)?$/,n=/^[\],:{}\s]*$/,o=/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,p=/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,q=/(?:^|:|,)(?:\s*\[)+/g,r=/(webkit)[ \/]([\w.]+)/,s=/(opera)(?:.*version)?[ \/]([\w.]+)/,t=/(msie) ([\w.]+)/,u=/(mozilla)(?:.*? rv:([\w.]+))?/,v=/-([a-z]|[0-9])/ig,w=/^-ms-/,x=function(a,b){return(b+"").toUpperCase()},y=d.userAgent,z,A,B,C=Object.prototype.toString,D=Object.prototype.hasOwnProperty,E=Array.prototype.push,F=Array.prototype.slice,G=String.prototype.trim,H=Array.prototype.indexOf,I={};e.fn=e.prototype={constructor:e,init:function(a,d,f){var g,h,j,k;if(!a)return this;if(a.nodeType){this.context=this[0]=a,this.length=1;return this}if(a==="body"&&!d&&c.body){this.context=c,this[0]=c.body,this.selector=a,this.length=1;return this}if(typeof a=="string"){a.charAt(0)!=="<"||a.charAt(a.length-1)!==">"||a.length<3?g=i.exec(a):g=[null,a,null];if(g&&(g[1]||!d)){if(g[1]){d=d instanceof e?d[0]:d,k=d?d.ownerDocument||d:c,j=m.exec(a),j?e.isPlainObject(d)?(a=[c.createElement(j[1])],e.fn.attr.call(a,d,!0)):a=[k.createElement(j[1])]:(j=e.buildFragment([g[1]],[k]),a=(j.cacheable?e.clone(j.fragment):j.fragment).childNodes);return e.merge(this,a)}h=c.getElementById(g[2]);if(h&&h.parentNode){if(h.id!==g[2])return f.find(a);this.length=1,this[0]=h}this.context=c,this.selector=a;return this}return!d||d.jquery?(d||f).find(a):this.constructor(d).find(a)}if(e.isFunction(a))return f.ready(a);a.selector!==b&&(this.selector=a.selector,this.context=a.context);return e.makeArray(a,this)},selector:"",jquery:"1.7.1",length:0,size:function(){return this.length},toArray:function(){return F.call(this,0)},get:function(a){return a==null?this.toArray():a<0?this[this.length+a]:this[a]},pushStack:function(a,b,c){var d=this.constructor();e.isArray(a)?E.apply(d,a):e.merge(d,a),d.prevObject=this,d.context=this.context,b==="find"?d.selector=this.selector+(this.selector?" ":"")+c:b&&(d.selector=this.selector+"."+b+"("+c+")");return d},each:function(a,b){return e.each(this,a,b)},ready:function(a){e.bindReady(),A.add(a);return this},eq:function(a){a=+a;return a===-1?this.slice(a):this.slice(a,a+1)},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},slice:function(){return this.pushStack(F.apply(this,arguments),"slice",F.call(arguments).join(","))},map:function(a){return this.pushStack(e.map(this,function(b,c){return a.call(b,c,b)}))},end:function(){return this.prevObject||this.constructor(null)},push:E,sort:[].sort,splice:[].splice},e.fn.init.prototype=e.fn,e.extend=e.fn.extend=function(){var a,c,d,f,g,h,i=arguments[0]||{},j=1,k=arguments.length,l=!1;typeof i=="boolean"&&(l=i,i=arguments[1]||{},j=2),typeof i!="object"&&!e.isFunction(i)&&(i={}),k===j&&(i=this,--j);for(;j<k;j++)if((a=arguments[j])!=null)for(c in a){d=i[c],f=a[c];if(i===f)continue;l&&f&&(e.isPlainObject(f)||(g=e.isArray(f)))?(g?(g=!1,h=d&&e.isArray(d)?d:[]):h=d&&e.isPlainObject(d)?d:{},i[c]=e.extend(l,h,f)):f!==b&&(i[c]=f)}return i},e.extend({noConflict:function(b){a.$===e&&(a.$=g),b&&a.jQuery===e&&(a.jQuery=f);return e},isReady:!1,readyWait:1,holdReady:function(a){a?e.readyWait++:e.ready(!0)},ready:function(a){if(a===!0&&!--e.readyWait||a!==!0&&!e.isReady){if(!c.body)return setTimeout(e.ready,1);e.isReady=!0;if(a!==!0&&--e.readyWait>0)return;A.fireWith(c,[e]),e.fn.trigger&&e(c).trigger("ready").off("ready")}},bindReady:function(){if(!A){A=e.Callbacks("once memory");if(c.readyState==="complete")return setTimeout(e.ready,1);if(c.addEventListener)c.addEventListener("DOMContentLoaded",B,!1),a.addEventListener("load",e.ready,!1);else if(c.attachEvent){c.attachEvent("onreadystatechange",B),a.attachEvent("onload",e.ready);var b=!1;try{b=a.frameElement==null}catch(d){}c.documentElement.doScroll&&b&&J()}}},isFunction:function(a){return e.type(a)==="function"},isArray:Array.isArray||function(a){return e.type(a)==="array"},isWindow:function(a){return a&&typeof a=="object"&&"setInterval"in a},isNumeric:function(a){return!isNaN(parseFloat(a))&&isFinite(a)},type:function(a){return a==null?String(a):I[C.call(a)]||"object"},isPlainObject:function(a){if(!a||e.type(a)!=="object"||a.nodeType||e.isWindow(a))return!1;try{if(a.constructor&&!D.call(a,"constructor")&&!D.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}var d;for(d in a);return d===b||D.call(a,d)},isEmptyObject:function(a){for(var b in a)return!1;return!0},error:function(a){throw new Error(a)},parseJSON:function(b){if(typeof b!="string"||!b)return null;b=e.trim(b);if(a.JSON&&a.JSON.parse)return a.JSON.parse(b);if(n.test(b.replace(o,"@").replace(p,"]").replace(q,"")))return(new Function("return "+b))();e.error("Invalid JSON: "+b)},parseXML:function(c){var d,f;try{a.DOMParser?(f=new DOMParser,d=f.parseFromString(c,"text/xml")):(d=new ActiveXObject("Microsoft.XMLDOM"),d.async="false",d.loadXML(c))}catch(g){d=b}(!d||!d.documentElement||d.getElementsByTagName("parsererror").length)&&e.error("Invalid XML: "+c);return d},noop:function(){},globalEval:function(b){b&&j.test(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(w,"ms-").replace(v,x)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toUpperCase()===b.toUpperCase()},each:function(a,c,d){var f,g=0,h=a.length,i=h===b||e.isFunction(a);if(d){if(i){for(f in a)if(c.apply(a[f],d)===!1)break}else for(;g<h;)if(c.apply(a[g++],d)===!1)break}else if(i){for(f in a)if(c.call(a[f],f,a[f])===!1)break}else for(;g<h;)if(c.call(a[g],g,a[g++])===!1)break;return a},trim:G?function(a){return a==null?"":G.call(a)}:function(a){return a==null?"":(a+"").replace(k,"").replace(l,"")},makeArray:function(a,b){var c=b||[];if(a!=null){var d=e.type(a);a.length==null||d==="string"||d==="function"||d==="regexp"||e.isWindow(a)?E.call(c,a):e.merge(c,a)}return c},inArray:function(a,b,c){var d;if(b){if(H)return H.call(b,a,c);d=b.length,c=c?c<0?Math.max(0,d+c):c:0;for(;c<d;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,c){var d=a.length,e=0;if(typeof c.length=="number")for(var f=c.length;e<f;e++)a[d++]=c[e];else while(c[e]!==b)a[d++]=c[e++];a.length=d;return a},grep:function(a,b,c){var d=[],e;c=!!c;for(var f=0,g=a.length;f<g;f++)e=!!b(a[f],f),c!==e&&d.push(a[f]);return d},map:function(a,c,d){var f,g,h=[],i=0,j=a.length,k=a instanceof e||j!==b&&typeof j=="number"&&(j>0&&a[0]&&a[j-1]||j===0||e.isArray(a));if(k)for(;i<j;i++)f=c(a[i],i,d),f!=null&&(h[h.length]=f);else for(g in a)f=c(a[g],g,d),f!=null&&(h[h.length]=f);return h.concat.apply([],h)},guid:1,proxy:function(a,c){if(typeof c=="string"){var d=a[c];c=a,a=d}if(!e.isFunction(a))return b;var f=F.call(arguments,2),g=function(){return a.apply(c,f.concat(F.call(arguments)))};g.guid=a.guid=a.guid||g.guid||e.guid++;return g},access:function(a,c,d,f,g,h){var i=a.length;if(typeof c=="object"){for(var j in c)e.access(a,j,c[j],f,g,d);return a}if(d!==b){f=!h&&f&&e.isFunction(d);for(var k=0;k<i;k++)g(a[k],c,f?d.call(a[k],k,g(a[k],c)):d,h);return a}return i?g(a[0],c):b},now:function(){return(new Date).getTime()},uaMatch:function(a){a=a.toLowerCase();var b=r.exec(a)||s.exec(a)||t.exec(a)||a.indexOf("compatible")<0&&u.exec(a)||[];return{browser:b[1]||"",version:b[2]||"0"}},sub:function(){function a(b,c){return new a.fn.init(b,c)}e.extend(!0,a,this),a.superclass=this,a.fn=a.prototype=this(),a.fn.constructor=a,a.sub=this.sub,a.fn.init=function(d,f){f&&f instanceof e&&!(f instanceof a)&&(f=a(f));return e.fn.init.call(this,d,f,b)},a.fn.init.prototype=a.fn;var b=a(c);return a},browser:{}}),e.each("Boolean Number String Function Array Date RegExp Object".split(" "),function(a,b){I["[object "+b+"]"]=b.toLowerCase()}),z=e.uaMatch(y),z.browser&&(e.browser[z.browser]=!0,e.browser.version=z.version),e.browser.webkit&&(e.browser.safari=!0),j.test(" ")&&(k=/^[\s\xA0]+/,l=/[\s\xA0]+$/),h=e(c),c.addEventListener?B=function(){c.removeEventListener("DOMContentLoaded",B,!1),e.ready()}:c.attachEvent&&(B=function(){c.readyState==="complete"&&(c.detachEvent("onreadystatechange",B),e.ready())});return e}(),g={};f.Callbacks=function(a){a=a?g[a]||h(a):{};var c=[],d=[],e,i,j,k,l,m=function(b){var d,e,g,h,i;for(d=0,e=b.length;d<e;d++)g=b[d],h=f.type(g),h==="array"?m(g):h==="function"&&(!a.unique||!o.has(g))&&c.push(g)},n=function(b,f){f=f||[],e=!a.memory||[b,f],i=!0,l=j||0,j=0,k=c.length;for(;c&&l<k;l++)if(c[l].apply(b,f)===!1&&a.stopOnFalse){e=!0;break}i=!1,c&&(a.once?e===!0?o.disable():c=[]:d&&d.length&&(e=d.shift(),o.fireWith(e[0],e[1])))},o={add:function(){if(c){var a=c.length;m(arguments),i?k=c.length:e&&e!==!0&&(j=a,n(e[0],e[1]))}return this},remove:function(){if(c){var b=arguments,d=0,e=b.length;for(;d<e;d++)for(var f=0;f<c.length;f++)if(b[d]===c[f]){i&&f<=k&&(k--,f<=l&&l--),c.splice(f--,1);if(a.unique)break}}return this},has:function(a){if(c){var b=0,d=c.length;for(;b<d;b++)if(a===c[b])return!0}return!1},empty:function(){c=[];return this},disable:function(){c=d=e=b;return this},disabled:function(){return!c},lock:function(){d=b,(!e||e===!0)&&o.disable();return this},locked:function(){return!d},fireWith:function(b,c){d&&(i?a.once||d.push([b,c]):(!a.once||!e)&&n(b,c));return this},fire:function(){o.fireWith(this,arguments);return this},fired:function(){return!!e}};return o};var i=[].slice;f.extend({Deferred:function(a){var b=f.Callbacks("once memory"),c=f.Callbacks("once memory"),d=f.Callbacks("memory"),e="pending",g={resolve:b,reject:c,notify:d},h={done:b.add,fail:c.add,progress:d.add,state:function(){return e},isResolved:b.fired,isRejected:c.fired,then:function(a,b,c){i.done(a).fail(b).progress(c);return this},always:function(){i.done.apply(i,arguments).fail.apply(i,arguments);return this},pipe:function(a,b,c){return f.Deferred(function(d){f.each({done:[a,"resolve"],fail:[b,"reject"],progress:[c,"notify"]},function(a,b){var c=b[0],e=b[1],g;f.isFunction(c)?i[a](function(){g=c.apply(this,arguments),g&&f.isFunction(g.promise)?g.promise().then(d.resolve,d.reject,d.notify):d[e+"With"](this===i?d:this,[g])}):i[a](d[e])})}).promise()},promise:function(a){if(a==null)a=h;else for(var b in h)a[b]=h[b];return a}},i=h.promise({}),j;for(j in g)i[j]=g[j].fire,i[j+"With"]=g[j].fireWith;i.done(function(){e="resolved"},c.disable,d.lock).fail(function(){e="rejected"},b.disable,d.lock),a&&a.call(i,i);return i},when:function(a){function m(a){return function(b){e[a]=arguments.length>1?i.call(arguments,0):b,j.notifyWith(k,e)}}function l(a){return function(c){b[a]=arguments.length>1?i.call(arguments,0):c,--g||j.resolveWith(j,b)}}var b=i.call(arguments,0),c=0,d=b.length,e=Array(d),g=d,h=d,j=d<=1&&a&&f.isFunction(a.promise)?a:f.Deferred(),k=j.promise();if(d>1){for(;c<d;c++)b[c]&&b[c].promise&&f.isFunction(b[c].promise)?b[c].promise().then(l(c),j.reject,m(c)):--g;g||j.resolveWith(j,b)}else j!==a&&j.resolveWith(j,d?[a]:[]);return k}}),f.support=function(){var b,d,e,g,h,i,j,k,l,m,n,o,p,q=c.createElement("div"),r=c.documentElement;q.setAttribute("className","t"),q.innerHTML="   <link/><table></table><a href='/a' style='top:1px;float:left;opacity:.55;'>a</a><input type='checkbox'/>",d=q.getElementsByTagName("*"),e=q.getElementsByTagName("a")[0];if(!d||!d.length||!e)return{};g=c.createElement("select"),h=g.appendChild(c.createElement("option")),i=q.getElementsByTagName("input")[0],b={leadingWhitespace:q.firstChild.nodeType===3,tbody:!q.getElementsByTagName("tbody").length,htmlSerialize:!!q.getElementsByTagName("link").length,style:/top/.test(e.getAttribute("style")),hrefNormalized:e.getAttribute("href")==="/a",opacity:/^0.55/.test(e.style.opacity),cssFloat:!!e.style.cssFloat,checkOn:i.value==="on",optSelected:h.selected,getSetAttribute:q.className!=="t",enctype:!!c.createElement("form").enctype,html5Clone:c.createElement("nav").cloneNode(!0).outerHTML!=="<:nav></:nav>",submitBubbles:!0,changeBubbles:!0,focusinBubbles:!1,deleteExpando:!0,noCloneEvent:!0,inlineBlockNeedsLayout:!1,shrinkWrapBlocks:!1,reliableMarginRight:!0},i.checked=!0,b.noCloneChecked=i.cloneNode(!0).checked,g.disabled=!0,b.optDisabled=!h.disabled;try{delete q.test}catch(s){b.deleteExpando=!1}!q.addEventListener&&q.attachEvent&&q.fireEvent&&(q.attachEvent("onclick",function(){b.noCloneEvent=!1}),q.cloneNode(!0).fireEvent("onclick")),i=c.createElement("input"),i.value="t",i.setAttribute("type","radio"),b.radioValue=i.value==="t",i.setAttribute("checked","checked"),q.appendChild(i),k=c.createDocumentFragment(),k.appendChild(q.lastChild),b.checkClone=k.cloneNode(!0).cloneNode(!0).lastChild.checked,b.appendChecked=i.checked,k.removeChild(i),k.appendChild(q),q.innerHTML="",a.getComputedStyle&&(j=c.createElement("div"),j.style.width="0",j.style.marginRight="0",q.style.width="2px",q.appendChild(j),b.reliableMarginRight=(parseInt((a.getComputedStyle(j,null)||{marginRight:0}).marginRight,10)||0)===0);if(q.attachEvent)for(o in{submit:1,change:1,focusin:1})n="on"+o,p=n in q,p||(q.setAttribute(n,"return;"),p=typeof q[n]=="function"),b[o+"Bubbles"]=p;k.removeChild(q),k=g=h=j=q=i=null,f(function(){var a,d,e,g,h,i,j,k,m,n,o,r=c.getElementsByTagName("body")[0];!r||(j=1,k="position:absolute;top:0;left:0;width:1px;height:1px;margin:0;",m="visibility:hidden;border:0;",n="style='"+k+"border:5px solid #000;padding:0;'",o="<div "+n+"><div></div></div>"+"<table "+n+" cellpadding='0' cellspacing='0'>"+"<tr><td></td></tr></table>",a=c.createElement("div"),a.style.cssText=m+"width:0;height:0;position:static;top:0;margin-top:"+j+"px",r.insertBefore(a,r.firstChild),q=c.createElement("div"),a.appendChild(q),q.innerHTML="<table><tr><td style='padding:0;border:0;display:none'></td><td>t</td></tr></table>",l=q.getElementsByTagName("td"),p=l[0].offsetHeight===0,l[0].style.display="",l[1].style.display="none",b.reliableHiddenOffsets=p&&l[0].offsetHeight===0,q.innerHTML="",q.style.width=q.style.paddingLeft="1px",f.boxModel=b.boxModel=q.offsetWidth===2,typeof q.style.zoom!="undefined"&&(q.style.display="inline",q.style.zoom=1,b.inlineBlockNeedsLayout=q.offsetWidth===2,q.style.display="",q.innerHTML="<div style='width:4px;'></div>",b.shrinkWrapBlocks=q.offsetWidth!==2),q.style.cssText=k+m,q.innerHTML=o,d=q.firstChild,e=d.firstChild,h=d.nextSibling.firstChild.firstChild,i={doesNotAddBorder:e.offsetTop!==5,doesAddBorderForTableAndCells:h.offsetTop===5},e.style.position="fixed",e.style.top="20px",i.fixedPosition=e.offsetTop===20||e.offsetTop===15,e.style.position=e.style.top="",d.style.overflow="hidden",d.style.position="relative",i.subtractsBorderForOverflowNotVisible=e.offsetTop===-5,i.doesNotIncludeMarginInBodyOffset=r.offsetTop!==j,r.removeChild(a),q=a=null,f.extend(b,i))});return b}();var j=/^(?:\{.*\}|\[.*\])$/,k=/([A-Z])/g;f.extend({cache:{},uuid:0,expando:"jQuery"+(f.fn.jquery+Math.random()).replace(/\D/g,""),noData:{embed:!0,object:"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000",applet:!0},hasData:function(a){a=a.nodeType?f.cache[a[f.expando]]:a[f.expando];return!!a&&!m(a)},data:function(a,c,d,e){if(!!f.acceptData(a)){var g,h,i,j=f.expando,k=typeof c=="string",l=a.nodeType,m=l?f.cache:a,n=l?a[j]:a[j]&&j,o=c==="events";if((!n||!m[n]||!o&&!e&&!m[n].data)&&k&&d===b)return;n||(l?a[j]=n=++f.uuid:n=j),m[n]||(m[n]={},l||(m[n].toJSON=f.noop));if(typeof c=="object"||typeof c=="function")e?m[n]=f.extend(m[n],c):m[n].data=f.extend(m[n].data,c);g=h=m[n],e||(h.data||(h.data={}),h=h.data),d!==b&&(h[f.camelCase(c)]=d);if(o&&!h[c])return g.events;k?(i=h[c],i==null&&(i=h[f.camelCase(c)])):i=h;return i}},removeData:function(a,b,c){if(!!f.acceptData(a)){var d,e,g,h=f.expando,i=a.nodeType,j=i?f.cache:a,k=i?a[h]:h;if(!j[k])return;if(b){d=c?j[k]:j[k].data;if(d){f.isArray(b)||(b in d?b=[b]:(b=f.camelCase(b),b in d?b=[b]:b=b.split(" ")));for(e=0,g=b.length;e<g;e++)delete d[b[e]];if(!(c?m:f.isEmptyObject)(d))return}}if(!c){delete j[k].data;if(!m(j[k]))return}f.support.deleteExpando||!j.setInterval?delete j[k]:j[k]=null,i&&(f.support.deleteExpando?delete a[h]:a.removeAttribute?a.removeAttribute(h):a[h]=null)}},_data:function(a,b,c){return f.data(a,b,c,!0)},acceptData:function(a){if(a.nodeName){var b=f.noData[a.nodeName.toLowerCase()];if(b)return b!==!0&&a.getAttribute("classid")===b}return!0}}),f.fn.extend({data:function(a,c){var d,e,g,h=null;if(typeof a=="undefined"){if(this.length){h=f.data(this[0]);if(this[0].nodeType===1&&!f._data(this[0],"parsedAttrs")){e=this[0].attributes;for(var i=0,j=e.length;i<j;i++)g=e[i].name,g.indexOf("data-")===0&&(g=f.camelCase(g.substring(5)),l(this[0],g,h[g]));f._data(this[0],"parsedAttrs",!0)}}return h}if(typeof a=="object")return this.each(function(){f.data(this,a)});d=a.split("."),d[1]=d[1]?"."+d[1]:"";if(c===b){h=this.triggerHandler("getData"+d[1]+"!",[d[0]]),h===b&&this.length&&(h=f.data(this[0],a),h=l(this[0],a,h));return h===b&&d[1]?this.data(d[0]):h}return this.each(function(){var b=f(this),e=[d[0],c];b.triggerHandler("setData"+d[1]+"!",e),f.data(this,a,c),b.triggerHandler("changeData"+d[1]+"!",e)})},removeData:function(a){return this.each(function(){f.removeData(this,a)})}}),f.extend({_mark:function(a,b){a&&(b=(b||"fx")+"mark",f._data(a,b,(f._data(a,b)||0)+1))},_unmark:function(a,b,c){a!==!0&&(c=b,b=a,a=!1);if(b){c=c||"fx";var d=c+"mark",e=a?0:(f._data(b,d)||1)-1;e?f._data(b,d,e):(f.removeData(b,d,!0),n(b,c,"mark"))}},queue:function(a,b,c){var d;if(a){b=(b||"fx")+"queue",d=f._data(a,b),c&&(!d||f.isArray(c)?d=f._data(a,b,f.makeArray(c)):d.push(c));return d||[]}},dequeue:function(a,b){b=b||"fx";var c=f.queue(a,b),d=c.shift(),e={};d==="inprogress"&&(d=c.shift()),d&&(b==="fx"&&c.unshift("inprogress"),f._data(a,b+".run",e),d.call(a,function(){f.dequeue(a,b)},e)),c.length||(f.removeData(a,b+"queue "+b+".run",!0),n(a,b,"queue"))}}),f.fn.extend({queue:function(a,c){typeof a!="string"&&(c=a,a="fx");if(c===b)return f.queue(this[0],a);return this.each(function(){var b=f.queue(this,a,c);a==="fx"&&b[0]!=="inprogress"&&f.dequeue(this,a)})},dequeue:function(a){return this.each(function(){f.dequeue(this,a)})},delay:function(a,b){a=f.fx?f.fx.speeds[a]||a:a,b=b||"fx";return this.queue(b,function(b,c){var d=setTimeout(b,a);c.stop=function(){clearTimeout(d)}})},clearQueue:function(a){return this.queue(a||"fx",[])},promise:function(a,c){function m(){--h||d.resolveWith(e,[e])}typeof a!="string"&&(c=a,a=b),a=a||"fx";var d=f.Deferred(),e=this,g=e.length,h=1,i=a+"defer",j=a+"queue",k=a+"mark",l;while(g--)if(l=f.data(e[g],i,b,!0)||(f.data(e[g],j,b,!0)||f.data(e[g],k,b,!0))&&f.data(e[g],i,f.Callbacks("once memory"),!0))h++,l.add(m);m();return d.promise()}});var o=/[\n\t\r]/g,p=/\s+/,q=/\r/g,r=/^(?:button|input)$/i,s=/^(?:button|input|object|select|textarea)$/i,t=/^a(?:rea)?$/i,u=/^(?:autofocus|autoplay|async|checked|controls|defer|disabled|hidden|loop|multiple|open|readonly|required|scoped|selected)$/i,v=f.support.getSetAttribute,w,x,y;f.fn.extend({attr:function(a,b){return f.access(this,a,b,!0,f.attr)},removeAttr:function(a){return this.each(function(){f.removeAttr(this,a)})},prop:function(a,b){return f.access(this,a,b,!0,f.prop)},removeProp:function(a){a=f.propFix[a]||a;return this.each(function(){try{this[a]=b,delete this[a]}catch(c){}})},addClass:function(a){var b,c,d,e,g,h,i;if(f.isFunction(a))return this.each(function(b){f(this).addClass(a.call(this,b,this.className))});if(a&&typeof a=="string"){b=a.split(p);for(c=0,d=this.length;c<d;c++){e=this[c];if(e.nodeType===1)if(!e.className&&b.length===1)e.className=a;else{g=" "+e.className+" ";for(h=0,i=b.length;h<i;h++)~g.indexOf(" "+b[h]+" ")||(g+=b[h]+" ");e.className=f.trim(g)}}}return this},removeClass:function(a){var c,d,e,g,h,i,j;if(f.isFunction(a))return this.each(function(b){f(this).removeClass(a.call(this,b,this.className))});if(a&&typeof a=="string"||a===b){c=(a||"").split(p);for(d=0,e=this.length;d<e;d++){g=this[d];if(g.nodeType===1&&g.className)if(a){h=(" "+g.className+" ").replace(o," ");for(i=0,j=c.length;i<j;i++)h=h.replace(" "+c[i]+" "," ");g.className=f.trim(h)}else g.className=""}}return this},toggleClass:function(a,b){var c=typeof a,d=typeof b=="boolean";if(f.isFunction(a))return this.each(function(c){f(this).toggleClass(a.call(this,c,this.className,b),b)});return this.each(function(){if(c==="string"){var e,g=0,h=f(this),i=b,j=a.split(p);while(e=j[g++])i=d?i:!h.hasClass(e),h[i?"addClass":"removeClass"](e)}else if(c==="undefined"||c==="boolean")this.className&&f._data(this,"__className__",this.className),this.className=this.className||a===!1?"":f._data(this,"__className__")||""})},hasClass:function(a){var b=" "+a+" ",c=0,d=this.length;for(;c<d;c++)if(this[c].nodeType===1&&(" "+this[c].className+" ").replace(o," ").indexOf(b)>-1)return!0;return!1},val:function(a){var c,d,e,g=this[0];{if(!!arguments.length){e=f.isFunction(a);return this.each(function(d){var g=f(this),h;if(this.nodeType===1){e?h=a.call(this,d,g.val()):h=a,h==null?h="":typeof h=="number"?h+="":f.isArray(h)&&(h=f.map(h,function(a){return a==null?"":a+""})),c=f.valHooks[this.nodeName.toLowerCase()]||f.valHooks[this.type];if(!c||!("set"in c)||c.set(this,h,"value")===b)this.value=h}})}if(g){c=f.valHooks[g.nodeName.toLowerCase()]||f.valHooks[g.type];if(c&&"get"in c&&(d=c.get(g,"value"))!==b)return d;d=g.value;return typeof d=="string"?d.replace(q,""):d==null?"":d}}}}),f.extend({valHooks:{option:{get:function(a){var b=a.attributes.value;return!b||b.specified?a.value:a.text}},select:{get:function(a){var b,c,d,e,g=a.selectedIndex,h=[],i=a.options,j=a.type==="select-one";if(g<0)return null;c=j?g:0,d=j?g+1:i.length;for(;c<d;c++){e=i[c];if(e.selected&&(f.support.optDisabled?!e.disabled:e.getAttribute("disabled")===null)&&(!e.parentNode.disabled||!f.nodeName(e.parentNode,"optgroup"))){b=f(e).val();if(j)return b;h.push(b)}}if(j&&!h.length&&i.length)return f(i[g]).val();return h},set:function(a,b){var c=f.makeArray(b);f(a).find("option").each(function(){this.selected=f.inArray(f(this).val(),c)>=0}),c.length||(a.selectedIndex=-1);return c}}},attrFn:{val:!0,css:!0,html:!0,text:!0,data:!0,width:!0,height:!0,offset:!0},attr:function(a,c,d,e){var g,h,i,j=a.nodeType;if(!!a&&j!==3&&j!==8&&j!==2){if(e&&c in f.attrFn)return f(a)[c](d);if(typeof a.getAttribute=="undefined")return f.prop(a,c,d);i=j!==1||!f.isXMLDoc(a),i&&(c=c.toLowerCase(),h=f.attrHooks[c]||(u.test(c)?x:w));if(d!==b){if(d===null){f.removeAttr(a,c);return}if(h&&"set"in h&&i&&(g=h.set(a,d,c))!==b)return g;a.setAttribute(c,""+d);return d}if(h&&"get"in h&&i&&(g=h.get(a,c))!==null)return g;g=a.getAttribute(c);return g===null?b:g}},removeAttr:function(a,b){var c,d,e,g,h=0;if(b&&a.nodeType===1){d=b.toLowerCase().split(p),g=d.length;for(;h<g;h++)e=d[h],e&&(c=f.propFix[e]||e,f.attr(a,e,""),a.removeAttribute(v?e:c),u.test(e)&&c in a&&(a[c]=!1))}},attrHooks:{type:{set:function(a,b){if(r.test(a.nodeName)&&a.parentNode)f.error("type property can't be changed");else if(!f.support.radioValue&&b==="radio"&&f.nodeName(a,"input")){var c=a.value;a.setAttribute("type",b),c&&(a.value=c);return b}}},value:{get:function(a,b){if(w&&f.nodeName(a,"button"))return w.get(a,b);return b in a?a.value:null},set:function(a,b,c){if(w&&f.nodeName(a,"button"))return w.set(a,b,c);a.value=b}}},propFix:{tabindex:"tabIndex",readonly:"readOnly","for":"htmlFor","class":"className",maxlength:"maxLength",cellspacing:"cellSpacing",cellpadding:"cellPadding",rowspan:"rowSpan",colspan:"colSpan",usemap:"useMap",frameborder:"frameBorder",contenteditable:"contentEditable"},prop:function(a,c,d){var e,g,h,i=a.nodeType;if(!!a&&i!==3&&i!==8&&i!==2){h=i!==1||!f.isXMLDoc(a),h&&(c=f.propFix[c]||c,g=f.propHooks[c]);return d!==b?g&&"set"in g&&(e=g.set(a,d,c))!==b?e:a[c]=d:g&&"get"in g&&(e=g.get(a,c))!==null?e:a[c]}},propHooks:{tabIndex:{get:function(a){var c=a.getAttributeNode("tabindex");return c&&c.specified?parseInt(c.value,10):s.test(a.nodeName)||t.test(a.nodeName)&&a.href?0:b}}}}),f.attrHooks.tabindex=f.propHooks.tabIndex,x={get:function(a,c){var d,e=f.prop(a,c);return e===!0||typeof e!="boolean"&&(d=a.getAttributeNode(c))&&d.nodeValue!==!1?c.toLowerCase():b},set:function(a,b,c){var d;b===!1?f.removeAttr(a,c):(d=f.propFix[c]||c,d in a&&(a[d]=!0),a.setAttribute(c,c.toLowerCase()));return c}},v||(y={name:!0,id:!0},w=f.valHooks.button={get:function(a,c){var d;d=a.getAttributeNode(c);return d&&(y[c]?d.nodeValue!=="":d.specified)?d.nodeValue:b},set:function(a,b,d){var e=a.getAttributeNode(d);e||(e=c.createAttribute(d),a.setAttributeNode(e));return e.nodeValue=b+""}},f.attrHooks.tabindex.set=w.set,f.each(["width","height"],function(a,b){f.attrHooks[b]=f.extend(f.attrHooks[b],{set:function(a,c){if(c===""){a.setAttribute(b,"auto");return c}}})}),f.attrHooks.contenteditable={get:w.get,set:function(a,b,c){b===""&&(b="false"),w.set(a,b,c)}}),f.support.hrefNormalized||f.each(["href","src","width","height"],function(a,c){f.attrHooks[c]=f.extend(f.attrHooks[c],{get:function(a){var d=a.getAttribute(c,2);return d===null?b:d}})}),f.support.style||(f.attrHooks.style={get:function(a){return a.style.cssText.toLowerCase()||b},set:function(a,b){return a.style.cssText=""+b}}),f.support.optSelected||(f.propHooks.selected=f.extend(f.propHooks.selected,{get:function(a){var b=a.parentNode;b&&(b.selectedIndex,b.parentNode&&b.parentNode.selectedIndex);return null}})),f.support.enctype||(f.propFix.enctype="encoding"),f.support.checkOn||f.each(["radio","checkbox"],function(){f.valHooks[this]={get:function(a){return a.getAttribute("value")===null?"on":a.value}}}),f.each(["radio","checkbox"],function(){f.valHooks[this]=f.extend(f.valHooks[this],{set:function(a,b){if(f.isArray(b))return a.checked=f.inArray(f(a).val(),b)>=0}})});var z=/^(?:textarea|input|select)$/i,A=/^([^\.]*)?(?:\.(.+))?$/,B=/\bhover(\.\S+)?\b/,C=/^key/,D=/^(?:mouse|contextmenu)|click/,E=/^(?:focusinfocus|focusoutblur)$/,F=/^(\w*)(?:#([\w\-]+))?(?:\.([\w\-]+))?$/,G=function(a){var b=F.exec(a);b&&(b[1]=(b[1]||"").toLowerCase(),b[3]=b[3]&&new RegExp("(?:^|\\s)"+b[3]+"(?:\\s|$)"));return b},H=function(a,b){var c=a.attributes||{};return(!b[1]||a.nodeName.toLowerCase()===b[1])&&(!b[2]||(c.id||{}).value===b[2])&&(!b[3]||b[3].test((c["class"]||{}).value))},I=function(a){return f.event.special.hover?a:a.replace(B,"mouseenter$1 mouseleave$1")};
@@ -6031,6 +6201,7 @@ Mizuho.initializeTopBar = $.proxy(function() {
 	var isMobileDevice = this.isMobileDevice();
 	var timerId;
 	
+	// Create the floating table of contents used in the top bar.
 	var $floattoc = $('<div id="floattoc"></div>').html($('#toc').html());
 	$floattoc.find('#toctitle').remove();
 	$floattoc.find('.comments').remove();
@@ -6049,6 +6220,8 @@ Mizuho.initializeTopBar = $.proxy(function() {
 		self.internalLinkClicked(this, event);
 	});
 	
+	// Callback for when the user clicks on the Table of Contents
+	// button on the top bar.
 	function showFloatingToc() {
 		var scrollUpdateTimerId;
 		
@@ -6141,6 +6314,9 @@ Mizuho.initializeTopBar = $.proxy(function() {
 		$window.bind('scroll', onScroll);
 	}
 	
+	// Called whenever the user scrolls. Updates the title of the
+	// Table of Contents button in the top bar to the section that
+	// the user is currently reading.
 	function update() {
 		if ($title.offset().top + $title.height() < $document.scrollTop()) {
 			if (!$topbar.is(':visible')) {
@@ -6183,6 +6359,7 @@ Mizuho.initializeTopBar = $.proxy(function() {
 			update();
 		}, 100);
 	}
+	
 	
 	if (isMobileDevice) {
 		// Mobile devices don't support position fixed.

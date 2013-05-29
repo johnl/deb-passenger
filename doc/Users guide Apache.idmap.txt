@@ -18,36 +18,6 @@
 
 1.2. Where to get support	=>	where-to-get-support-f3pbrb
 
-10. Appendix A: About this document	=>	appendix-a-about-this-document-103toqs
-
-11. Appendix B: Terminology	=>	appendix-b-terminology-h4eaf4
-
-11.1. Application root	=>	application-root-otx6xf
-
-11.2. Idle process	=>	idle-process-potb6g
-
-11.3. Inactive process	=>	inactive-process-16gjv2e
-
-12. Appendix C: Spawning methods explained	=>	appendix-c-spawning-methods-explained-owghi9
-
-12.1. The most straightforward and traditional way: conservative spawning	=>	the-most-straightforward-and-traditional-way-conservative-spawning-1ybbli2
-
-12.2. The smart spawning method	=>	the-smart-spawning-method-1cvu9dd
-
-12.2.1. How it works	=>	how-it-works-672zja
-
-12.2.2. Summary of benefits	=>	summary-of-benefits-1yrihfb
-
-12.3. Smart spawning gotcha #1: unintentional file descriptor sharing	=>	smart-spawning-gotcha-1-unintentional-file-descriptor-sharing-z1y55l
-
-12.3.1. Example 1: Memcached connection sharing (harmful)	=>	example-1-memcached-connection-sharing-harmful--c71wqw
-
-12.3.2. Example 2: Log file sharing (not harmful)	=>	example-2-log-file-sharing-not-harmful--1p2yuol
-
-12.4. Smart spawning gotcha #2: the need to revive threads	=>	smart-spawning-gotcha-2-the-need-to-revive-threads-1k6cj7d
-
-12.5. Smart spawning gotcha #3: code load order	=>	smart-spawning-gotcha-3-code-load-order-nkotiy
-
 2. Installing, upgrading and uninstalling Phusion Passenger	=>	installing-upgrading-and-uninstalling-phusion-passenger-laryvs
 
 2.1. Generic installation instructions	=>	generic-installation-instructions-17jo43j
@@ -118,6 +88,22 @@
 
 5.1. PassengerRoot <directory>	=>	passengerroot-directory--sere8l
 
+5.2. PassengerRuby <filename>	=>	passengerruby-filename--1r3fv73
+
+5.3. PassengerAppRoot <path/to/root>	=>	passengerapproot-path-to-root--uf24yd
+
+5.4. PassengerSpawnMethod <string>	=>	passengerspawnmethod-string--sodg2y
+
+5.5. PassengerUseGlobalQueue <on|off>	=>	passengeruseglobalqueue-on-off--1ki369
+
+5.6. PassengerEnabled <on|off>	=>	passengerenabled-on-off--74rzth
+
+5.7. PassengerTempDir <directory>	=>	passengertempdir-directory--68h2ng
+
+5.8. PassengerUploadBufferDir <directory>	=>	passengeruploadbufferdir-directory--kdr8at
+
+5.9. PassengerRestartDir <directory>	=>	passengerrestartdir-directory--1fmhmv0
+
 5.10. PassengerBufferResponse <on|off>	=>	passengerbufferresponse-on-off--1y7ilka
 
 5.11. PassengerRollingRestarts <on|off>	=>	passengerrollingrestarts
@@ -142,10 +128,6 @@
 
 5.14.1. PassengerMaxPoolSize <integer>	=>	passengermaxpoolsize-integer--am64q8
 
-5.14.10. PassengerPreStart <url>	=>	passengerprestart-url--1dvgku9
-
-5.14.11. PassengerHighPerformance <on|off>	=>	passengerhighperformance-on-off--zgc547
-
 5.14.2. PassengerMinInstances <integer>	=>	passengermininstances-integer--wegq6b
 
 5.14.3. PassengerMaxInstances <integer>	=>	passengermaxinstances
@@ -161,6 +143,10 @@
 5.14.8. PassengerMemoryLimit <integer>	=>	passengermemorylimit
 
 5.14.9. PassengerStatThrottleRate <integer>	=>	passengerstatthrottlerate
+
+5.14.10. PassengerPreStart <url>	=>	passengerprestart-url--1dvgku9
+
+5.14.11. PassengerHighPerformance <on|off>	=>	passengerhighperformance-on-off--zgc547
 
 5.15. Compatibility options	=>	compatibility-options-8jve5a
 
@@ -207,22 +193,6 @@
 5.19.4. RailsAllowModRewrite	=>	railsallowmodrewrite-1vkziro
 
 5.19.5. RailsSpawnMethod	=>	railsspawnmethod-1aljgpa
-
-5.2. PassengerRuby <filename>	=>	passengerruby-filename--1r3fv73
-
-5.3. PassengerAppRoot <path/to/root>	=>	passengerapproot-path-to-root--uf24yd
-
-5.4. PassengerSpawnMethod <string>	=>	passengerspawnmethod-string--sodg2y
-
-5.5. PassengerUseGlobalQueue <on|off>	=>	passengeruseglobalqueue-on-off--1ki369
-
-5.6. PassengerEnabled <on|off>	=>	passengerenabled-on-off--74rzth
-
-5.7. PassengerTempDir <directory>	=>	passengertempdir-directory--68h2ng
-
-5.8. PassengerUploadBufferDir <directory>	=>	passengeruploadbufferdir-directory--kdr8at
-
-5.9. PassengerRestartDir <directory>	=>	passengerrestartdir-directory--1fmhmv0
 
 6. Troubleshooting	=>	troubleshooting-2ihihi
 
@@ -284,8 +254,6 @@
 
 8.1. User switching (security)	=>	user-switching-security--8njx1x
 
-8.10. Upload progress	=>	upload-progress-71cyl7
-
 8.2. Reducing memory consumption of Ruby on Rails applications by 33%	=>	reducing-memory-consumption-of-ruby-on-rails-applications-by-33--1ubxnq0
 
 8.3. Capistrano recipe	=>	capistrano-recipe-syzgo7
@@ -302,6 +270,8 @@
 
 8.9. X-Sendfile support	=>	x-sendfile-support-1cgyykw
 
+8.10. Upload progress	=>	upload-progress-71cyl7
+
 9. Under the hood	=>	under-the-hood-21ue5t
 
 9.1. Static assets serving	=>	static-assets-serving-wo2d9v
@@ -309,6 +279,39 @@
 9.2. Page caching support	=>	page-caching-support-kwq9b9
 
 9.3. How Phusion Passenger detects whether a virtual host is a web application	=>	how-phusion-passenger-detects-whether-a-virtual-host-is-a-web-application-179mp8m
+
+10. Appendix A: About this document	=>	appendix-a-about-this-document-103toqs
+
+11. Appendix B: Terminology	=>	appendix-b-terminology-h4eaf4
+
+11.1. Application root	=>	application-root-otx6xf
+
+11.2. Idle process	=>	idle-process-potb6g
+
+11.3. Inactive process	=>	inactive-process-16gjv2e
+
+12. Appendix C: Spawning methods explained	=>	appendix-c-spawning-methods-explained-owghi9
+
+12.1. The most straightforward and traditional way: conservative spawning	=>	the-most-straightforward-and-traditional-way-conservative-spawning-1ybbli2
+
+12.2. The smart spawning method	=>	the-smart-spawning-method-1cvu9dd
+
+12.2.1. How it works	=>	how-it-works-672zja
+
+12.2.2. Summary of benefits	=>	summary-of-benefits-1yrihfb
+
+12.3. Smart spawning gotcha #1: unintentional file descriptor sharing	=>	smart-spawning-gotcha-1-unintentional-file-descriptor-sharing-z1y55l
+
+12.3.1. Example 1: Memcached connection sharing (harmful)	=>	example-1-memcached-connection-sharing-harmful--c71wqw
+
+12.3.2. Example 2: Log file sharing (not harmful)	=>	example-2-log-file-sharing-not-harmful--1p2yuol
+
+12.4. Smart spawning gotcha #2: the need to revive threads	=>	smart-spawning-gotcha-2-the-need-to-revive-threads-1k6cj7d
+
+12.5. Smart spawning gotcha #3: code load order	=>	smart-spawning-gotcha-3-code-load-order-nkotiy
+
+
+### These sections appear to have been removed. Please check.
 
 Obtaining Phusion Passenger files through a tarball	=>	obtaining-phusion-passenger-files-through-a-tarball-evcm0j
 
